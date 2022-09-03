@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Cpp-网络编程入门：简易聊天室（已摆烂）</title>
+    <link href="/2022/09/03/Cpp-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A%E7%AE%80%E6%98%93%E8%81%8A%E5%A4%A9%E5%AE%A4%EF%BC%88%E5%B7%B2%E6%91%86%E7%83%82%EF%BC%89/"/>
+    <url>/2022/09/03/Cpp-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A%E7%AE%80%E6%98%93%E8%81%8A%E5%A4%A9%E5%AE%A4%EF%BC%88%E5%B7%B2%E6%91%86%E7%83%82%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p>[补档]</p><p>之前有说要写篇博客写一下c++基础的网络编程，奈何我也学的不是很通透，半吊子水平，实在是整不好。</p><p>第一次接触网络编程，网上到处找博客边学边写。最后实现的聊天室并不算完整，也就不太好意思写技术分享了。感兴趣的同学可以去了解一下<strong>socket网络编程</strong>与<strong>select epoll</strong>，顺带学一下<strong>C++的多线程</strong>有关知识，这样就大概能写个聊天室出来。</p><p>搞了挺久的，这里放一下我写的以供参考：<a href="https://github.com/tbbbk/C-ChatRoom"><strong>点我</strong></a></p><hr><p><del>补档的时候再看确实写得很烂</del></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技术分享</tag>
+      
+      <tag>C++</tag>
+      
+      <tag>网络编程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>从0开始，使用WordPress搭建一个个人博客</title>
     <link href="/2022/09/03/%E4%BB%8E0%E5%BC%80%E5%A7%8B%EF%BC%8C%E4%BD%BF%E7%94%A8WordPress%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
     <url>/2022/09/03/%E4%BB%8E0%E5%BC%80%E5%A7%8B%EF%BC%8C%E4%BD%BF%E7%94%A8WordPress%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
@@ -20,9 +49,9 @@
     
     <tags>
       
-      <tag>WorDPress</tag>
-      
       <tag>技术分享</tag>
+      
+      <tag>WordPress</tag>
       
     </tags>
     
