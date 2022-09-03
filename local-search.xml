@@ -8,7 +8,7 @@
     <link href="/2022/09/03/Hello%20World/"/>
     <url>/2022/09/03/Hello%20World/</url>
     
-    <content type="html"><![CDATA[<p>终于又把博客给重新搭好了，这次使用的是Hexo+GitHub的方式建站。其实之前也有博客的，不过上一个博客是搭在腾讯云的服务器上，最后出了点意外导致不得不放弃了。~~国内服务器建的网站备案有多难懂得都懂我有什么办法总不可能一直ip裸连呀买了域名也用不了我真的会紫砂</p><p><img src="https://cdn.jsdelivr.net/gh/tbbbk/BlogIMG/kill.jpg"></p><p>以后估计就会在这个博客里面更新一些日常和一些总结吧，这几天会把之前博客的文章都迁移过来🥰。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">champagne = <span class="hljs-string">&quot;Hello World!&quot;</span><br><span class="hljs-built_in">print</span>(champagne)<br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="你好"><a href="#你好" class="headerlink" title="你好"></a>你好</h1><p>终于又把博客给重新搭好了，这次使用的是Hexo+GitHub的方式建站。其实之前也有博客的，不过上一个博客是搭在腾讯云的服务器上，最后出了点意外导致不得不放弃了。<del>国内服务器建的网站备案有多难懂得都懂我有什么办法总不可能一直ip裸连呀买了域名也用不了我真的会紫砂</del></p><p><img src="https://cdn.jsdelivr.net/gh/tbbbk/BlogIMG/kill.jpg"></p><p>以后估计就会在这个博客里面更新一些日常和一些总结吧，这几天会把之前博客的文章都迁移过来🥰。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">champagne = <span class="hljs-string">&quot;Hello World!&quot;</span><br><span class="hljs-built_in">print</span>(champagne)<br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
