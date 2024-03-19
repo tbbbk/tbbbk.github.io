@@ -57,7 +57,7 @@ education:
 
       Courses included:
 
-      - Calculus (91)      
+      - Calculus (91)  
       - Linear Algebra (98)
       - Discrete Mathematics (92)
       - Probability Statistics (92)
@@ -98,26 +98,26 @@ skills:
       - name: Linux
         description: ''
         percent: 75
-        icon: devicon/linux      
+        icon: devicon/linux  
       - name: JAVA(SpringBoot)
         description: ''
         percent: 70
-        icon: devicon/java      
+        icon: devicon/java  
       - name: MYSQL
         description: ''
         percent: 80
         icon: devicon/azuresqldatabase
       - name: C/C++
         description: ''
-        percent: 50        
+        percent: 50  
         icon: devicon/cplusplus
       - name: LATXE
         description: ''
-        percent: 80        
+        percent: 80  
         icon: devicon/latex
       - name: Vue
         description: ''
-        percent: 60        
+        percent: 60  
         icon: devicon/vuejs
 
   - name: Hobbies
