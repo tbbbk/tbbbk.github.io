@@ -19,7 +19,7 @@ social: false # includes social icons at the bottom of the page
 ---
 Hi👋! I am Bingkui Tong (童柄魁), a junior undergraduate student majoring in computer science from [Sichuan University](https://en.scu.edu.cn/). My primary research interests lie in Multimodal Models, Privacy Protection, and other application domains. My research goal is to build robust, reliable AI systems. I am gratefully advised by Prof. [Kaiyang Zhou](https://kaiyangzhou.github.io/) and Prof. [Jizhe Zhou](https://knightzjz.github.io/) as a research intern.
 
-[Email](bingkuitong@gmail.com) / [Github](https://github.com/tbbbk) / [Google Scholar](https://scholar.google.com/citations?user=2ocssHcAAAAJ&hl=en) / [CV](BingkuiTongResume.pdf)
+[Email](bingkuitong@gmail.com) / [Github](https://github.com/tbbbk) / [Google Scholar](https://scholar.google.com/citations?user=2ocssHcAAAAJ&hl=en) / [CV](https://drive.google.com/file/d/1dOPLE6U8LSJH02UaSK8ehLBSC_YigjN8/view?usp=drive_link)
 
 # Education
 
