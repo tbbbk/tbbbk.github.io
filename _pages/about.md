@@ -34,7 +34,7 @@ Hi👋! I am Bingkui Tong (童柄魁), a junior undergraduate student majoring i
 
 # Honors and Awards
 
-- 2022-2023	**Chinese National Scholarship**
+- 2022-2023    **Chinese National Scholarship**
 - 2021-2023    **Merit Student Award, Sichuan University**
 - 2022-2023    **Comprehensive First-class Scholarship, Sichuan University (Top 3%)**
 - 2022-2023    **Comprehensive Second-class Scholarship, Sichuan University (Top 7%)**
