@@ -21,7 +21,7 @@ social: false # includes social icons at the bottom of the page
 ---
 Hi👋! I am Bingkui Tong (童柄魁), a junior undergraduate student majoring in computer science from [Sichuan University](https://en.scu.edu.cn/). My primary research interests lie in Multimodal Models, Privacy Protection, and other application domains. My research goal is to build robust, reliable AI systems. I am gratefully advised by Prof. [Kaiyang Zhou](https://kaiyangzhou.github.io/) and Prof. [Jizhe Zhou](https://knightzjz.github.io/) as a research intern.
 
-# Education
+## Education
 
 - Sep.2021 - June.2025  **Sichuan University**
 
@@ -32,7 +32,7 @@ Hi👋! I am Bingkui Tong (童柄魁), a junior undergraduate student majoring i
   > Rank: 12/312
   >
 
-# Honors and Awards
+## Honors and Awards
 
 - 2022-2023    **Chinese National Scholarship**
 - 2021-2023    **Merit Student Award, Sichuan University**
