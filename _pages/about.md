@@ -27,7 +27,7 @@ Hi👋! I am Bingkui Tong (童柄魁), a junior undergraduate student majoring i
 
   > B.E. in Computer Science
   >
-  > GPA: 3.82/4
+  > GPA: 3.81/4
   >
   > Rank: 12/312
   >
