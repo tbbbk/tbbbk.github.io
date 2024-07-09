@@ -12,7 +12,7 @@ profile:
     <a href="mailto:bingkuitong@gmail.com"><i class="fa-solid fa-envelope fa-2x"></i></a>
     <a href="https://github.com/tbbbk"><i class="fa-brands fa-github fa-2x"></i></a>
     <a href="https://scholar.google.com/citations?user=2ocssHcAAAAJ&hl=en"><i class="ai ai-google-scholar-square ai-2x"></i></a>
-    <a href="https://drive.google.com/file/d/1dOPLE6U8LSJH02UaSK8ehLBSC_YigjN8/view"><i class="ai ai-cv ai-2x"></i></a>
+    <a href="https://drive.google.com/file/d/1UYWREtiRaIsYLH1ZBd7YoavH_5411S7N/view?usp=sharing"><i class="ai ai-cv ai-2x"></i></a>
   
 
 news: true # includes a list of news items
