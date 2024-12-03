@@ -12,26 +12,27 @@ body {
 }
 
 #profile {
-    display: flex; 
-    align-items: center; 
-    justify-content: flex-start; 
-    gap: 20px; 
+    display: flex !important; 
+    align-items: center !important;
+    justify-content: flex-start !important; 
+    gap: 20px !important;
 }
 
 .text {
-    flex: 1; 
+    flex: 1 !important; 
 }
 
 .image {
-    width: 25%; 
-    display: flex;
+    width: 25% !important; 
+    display: flex !important;
 }
 
 .image img {
-    max-width: 100%; 
-    height: auto;
-    border-radius: 10px; 
+    max-width: 100% !important; 
+    height: auto !important;
+    border-radius: 10px !important; 
 }
+
 
 
 #introduction p {
