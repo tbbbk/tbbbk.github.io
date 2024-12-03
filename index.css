@@ -1,39 +1,38 @@
 body {
-    font-family: 'Times New Roman'; /* 设置字体为 Arial，后备字体为 sans-serif */
+    font-family: 'Times New Roman'; 
 }
 
 #page {
-    display: flex; /* 创建一个弹性容器 */
+    display: flex; 
     flex-direction: column;
-    justify-content: center; /* 水平居中 */
-    /* background-color: aqua; */
+    justify-content: center; 
     margin-left: 30%;
     margin-right: 30%;
     margin-top: 50px;
 }
 
 #profile {
-    display: flex; /* 使用 Flexbox 布局 */
-    align-items: center; /* 垂直居中对齐 */
-    justify-content: space-between; /* 内容两端对齐 */
-    gap: 20px; /* 图片和文字之间的间距 */
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; 
+    gap: 20px; 
 }
 
 .text {
-    flex: 1; /* 文字部分占据剩余空间 */
+    flex: 1; 
 }
 
 .image {
-    width: 25%; /* 图片宽度 */
+    width: 25%; 
     display: flex;
-    justify-content: flex-end; /* 确保图片靠右 */
 }
 
 .image img {
-    max-width: 100%; /* 确保图片不会溢出 */
+    max-width: 100%; 
     height: auto;
-    border-radius: 10px; /* 添加圆角效果（可选） */
+    border-radius: 10px; 
 }
+
 
 #introduction p {
     font-size: 30px;
@@ -49,7 +48,7 @@ body {
 
 
 #cvModal {
-    display: none; /* 初始隐藏 */
+    display: none; 
     position: fixed;
     top: 50%;
     left: 50%;
@@ -68,14 +67,14 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%; /* 调整宽度 */
-    height: 80%; /* 调整高度 */
+    width: 80%; 
+    height: 80%; 
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     z-index: 1000;
     padding: 20px;
-    overflow-y: auto; /* 添加滚动支持 */
+    overflow-y: auto; 
 }
 
 
@@ -87,15 +86,15 @@ body {
 }
 
 iframe {
-    display: block; /* 确保填充父容器 */
-    width: 100%; /* 占满父容器宽度 */
-    height: 85%; /* 高度为父容器减去标题和描述的高度 */
-    border: none; /* 移除边框 */
+    display: block; 
+    width: 100%; 
+    height: 85%; 
+    border: none; 
 }
 
 #flagCounter {
     position: fixed;
-    bottom: 10px; /* 距离屏幕底部 10px */
-    right: 10px; /* 距离屏幕右侧 10px */
-    z-index: 1000; /* 保证在其他元素之上显示 */
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000; 
 }
