@@ -12,16 +12,26 @@
     <div id="page">
 
         <div id="profile">
-            <img src="assets/images/profile.jpg" alt="Bingkui Tong" width="30%">
-            <p style="font-size: 40px;">Bingkui Tong</p>
-            <p style="font-size: 25px;">Undergraduate Student@Sichuan University</p>
-            <p style="font-size: 25px;">[first name] [last name] [at] gmail [dot] com</p>
-            <p style="font-size: 25px;"> 
-                [<a href="#" onclick="showModal()">CV</a>] | 
-                [<a href="https://scholar.google.com/citations?user=2ocssHcAAAAJ&hl=en">Google Scholar</a>] |
-                [<a href="https://github.com/tbbbk">GitHub</a>]
-            </p>
+            <div class="image">
+                <img src="assets/images/profile.jpg" alt="Bingkui Tong" width="100%">
+            </div>
+            <div class="text">
+                <p style="font-size: 40px;">
+                    Bingkui Tong 童柄魁 
+                    <span onclick="playSound()" style="font-size: 30px; cursor: pointer; margin-left: 10px;">🔊</span>
+                </p>
+                <audio  id="sound" src="assets/audios/tbk.mp3"></audio>
+                <p style="font-size: 25px;">Undergraduate Student@Sichuan University</p>
+                <p style="font-size: 25px;">[first name] [last name] [at] gmail [dot] com</p>
+                <p style="font-size: 25px;">
+                    [<a href="#" onclick="showModal()">CV</a>] | 
+                    [<a href="https://scholar.google.com/citations?user=2ocssHcAAAAJ&hl=en">Google Scholar</a>] |
+                    [<a href="https://github.com/tbbbk">GitHub</a>]
+                </p>
+            </div>
         </div>
+        
+        <hr/> 
 
         <div id="introduction">
             <h1>Introduction</h1>
@@ -34,7 +44,7 @@
                 manipulation detection in artificial intelligence.
             </p>
             <p>
-                I am currently applying for PhD programs related to artificial intelligence and would be delighted to connect with you if you are interested.
+                I am currently applying for PhD programs related to artificial intelligence. If you are interested, please feel free to contact me.
             </p>
         </div>
 
@@ -50,6 +60,10 @@
             </ul>
         </div>
     </div>
+    <a href="https://info.flagcounter.com/xgv3" id="flagCounter">
+        <img src="https://s01.flagcounter.com/count/xgv3/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_1/" alt="Flag Counter" border="0">
+    </a>
+
 
     <!-- 模态框部分 -->
     <div id="cvModalOverlay" onclick="hideModal()"></div>
