@@ -1,0 +1,75 @@
+body {
+    font-family: 'Times New Roman', sans-serif; /* 设置字体为 Arial，后备字体为 sans-serif */
+}
+
+#page {
+    display: flex; /* 创建一个弹性容器 */
+    flex-direction: column;
+    justify-content: center; /* 水平居中 */
+    /* background-color: aqua; */
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 50px;
+}
+
+#profile {
+    text-align: center; /* 文本居中 */
+}
+
+#introduction p {
+    font-size: 30px;
+    text-align: justify;
+}
+
+
+#news li {
+    font-size: 25px;
+    text-align: left;
+    line-height: 1.8;
+}
+
+
+#cvModal {
+    display: none; /* 初始隐藏 */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 1000;
+    padding: 20px;
+}
+
+#cvModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* 调整宽度 */
+    height: 80%; /* 调整高度 */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto; /* 添加滚动支持 */
+}
+
+
+#cvModal .close {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+iframe {
+    display: block; /* 确保填充父容器 */
+    width: 100%; /* 占满父容器宽度 */
+    height: 85%; /* 高度为父容器减去标题和描述的高度 */
+    border: none; /* 移除边框 */
+}

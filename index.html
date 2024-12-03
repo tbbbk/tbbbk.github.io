@@ -1,14 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My GitHub Page</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bingkui Tong's Homepage</title>
+    <link rel="stylesheet" href="index.css">
+	<script type="text/javascript" src="index.js"></script>
 </head>
 <body>
-  <h1>Welcome to My GitHub Page!</h1>
-  <p>This is a simple HTML page hosted on GitHub Pages.</p>
-  <script src="script.js"></script>
+    <div id="page">
+
+        <div id="profile">
+            <img src="assets/images/profile.jpg" alt="Bingkui Tong" width="30%">
+            <p style="font-size: 40px;">Bingkui Tong</p>
+            <p style="font-size: 25px;">Undergraduate Student@Sichuan University</p>
+            <p style="font-size: 25px;">[first name] [last name] [at] gmail [dot] com</p>
+            <p style="font-size: 25px;"> 
+                [<a href="#" onclick="showModal()">CV</a>] | 
+                [<a href="https://scholar.google.com/citations?user=2ocssHcAAAAJ&hl=en">Google Scholar</a>] |
+                [<a href="https://github.com/tbbbk">GitHub</a>]
+            </p>
+        </div>
+
+        <div id="introduction">
+            <h1>Introduction</h1>
+            <p>
+                Hello! I am a senior undergraduate student majoring in Computer Science and Technology at Sichuan University, specializing in privacy protection and computer vision. 
+                I am currently researching the robustness of multimodal large language models under the supervision of 
+                <a href="https://kaiyangzhou.github.io/">Prof. Kaiyang Zhou</a> at Hong Kong Baptist University.
+                Previously, I was fortunate to work under the mentorship of 
+                <a href="https://knightzjz.github.io/">Prof. Jizhe Zhou</a> at Sichuan University, where I explored privacy protection and 
+                manipulation detection in artificial intelligence.
+            </p>
+            <p>
+                I am currently applying for PhD programs related to artificial intelligence and would be delighted to connect with you if you are interested.
+            </p>
+        </div>
+
+        <div id="news">
+            <h1>News</h1>
+            <ul>
+                <li>[2024/10] First GRE score: 333.5 (V160; Q170; I3.5)</li>
+                <li>[2024/09] One paper accepted as a spotlight paper at NeurIPS 2024.</li>
+                <li>[2024/07] Attended the International Summer School at Hong Kong Polytechnic University.</li>
+                <li>[2024/03] First IELTS score: 7.5 (L8; R9: S6; W6)</li>
+                <li>[2023/12] Awarded the prestigious Chinese National Scholarship (Top 0.2%, nationwide).</li>
+                <li>[2023/08] Awarded the National Third Prize in the “China Software Cup” College Student Software Design Competition.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 模态框部分 -->
+    <div id="cvModalOverlay" onclick="hideModal()"></div>
+    <div id="cvModal">
+        <span class="close" onclick="hideModal()">&times;</span>
+        <h2>Curriculum Vitae</h2>
+        <p>Last Update: 2024/11/30</p>    
+        <iframe src="assets/pdfs/Resume_BingkuiTong.pdf"></iframe>
+    </div>
 </body>
 </html>
