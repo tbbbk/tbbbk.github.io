@@ -118,7 +118,7 @@ Format: **subject + verb + object**
 Use **strong** verbs:
 
 - Verbs make sentences go!
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225122745964.png" alt="image-20241225122745964" style="zoom:50%;" />
+  <img src="./images/image-20241225122745964.png" alt="image-20241225122745964" style="zoom:50%;" />
 - Pick the right verbs!
   <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225122948787.png" alt="image-20241225122948787" style="zoom:50%;" />
 - Use “to be” verbs purposefully and sparingly.
