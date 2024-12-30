@@ -120,10 +120,10 @@ Use **strong** verbs:
 - Verbs make sentences go!
   <img src="./images/image-20241225122745964.png" alt="image-20241225122745964" style="zoom:50%;" />
 - Pick the right verbs!
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225122948787.png" alt="image-20241225122948787" style="zoom:50%;" />
+  <img src="./images/image-20241225122948787.png" alt="image-20241225122948787" style="zoom:50%;" />
 - Use “to be” verbs purposefully and sparingly.
 - Don’t turn verbs into nouns: Don’t kill verbs by turning them into nouns.
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225123440026.png" alt="image-20241225123440026" style="zoom:50%;" />
+  <img src="./images/image-20241225123440026.png" alt="image-20241225123440026" style="zoom:50%;" />
 - Don’t bury the mean verb: Keep the subject and main verb (predicate) close together at the start of the sentence.
 
 ## A Few Grammar Tips
@@ -131,25 +131,25 @@ Use **strong** verbs:
 - “data are” not “data is”: “data” is plural
 - “affect” vs. “effect”: verb vs noun
 - “compared to” vs. “compared with”
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225133126581.png" alt="image-20241225133126581" style="zoom:50%;" />
+  <img src="./images/image-20241225133126581.png" alt="image-20241225133126581" style="zoom:50%;" />
 - “that” vs. “which”
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225133341984.png" alt="image-20241225133341984" style="zoom:50%;" /><img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225133636036.png" alt="image-20241225133636036" style="zoom:50%;" />
+  <img src="./images/image-20241225133341984.png" alt="image-20241225133341984" style="zoom:50%;" /><img src="./images/image-20241225133636036.png" alt="image-20241225133636036" style="zoom:50%;" />
 
 # Section 3
 
-<img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225175503887.png" alt="image-20241225175503887" style="zoom:50%;" />
+<img src="./images/image-20241225175503887.png" alt="image-20241225175503887" style="zoom:50%;" />
 
-<img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225175607898.png" alt="image-20241225175607898" style="zoom:50%;" />
+<img src="./images/image-20241225175607898.png" alt="image-20241225175607898" style="zoom:50%;" />
 
 ## Semicolon ;
 
 The semicolon connects two independent clauses.
-<img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225175814976.png" alt="image-20241225175814976" style="zoom:50%;" />
+<img src="./images/image-20241225175814976.png" alt="image-20241225175814976" style="zoom:50%;" />
 
 > Note: a clause always contains a subject and predicate; an independent clause can stand alone as a complete sentence.
 
 Semicolons are also used to separate items in lists contain internal punctuation.
-<img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225180940098.png" alt="image-20241225180940098" style="zoom:50%;" />
+<img src="./images/image-20241225180940098.png" alt="image-20241225180940098" style="zoom:50%;" />
 
 ## Parentheses ()
 
@@ -163,10 +163,10 @@ Use parentheses to insert an afterthought or explanation (a word, phrase, or sen
 **Examples**:
 
 - Example 1:
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225181509710.png" alt="image-20241225181509710" style="zoom:50%;" />
+  <img src="./images/image-20241225181509710.png" alt="image-20241225181509710" style="zoom:50%;" />
 
 - Example 2:
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225181556634.png" alt="image-20241225181556634" style="zoom:50%;" />
+  <img src="./images/image-20241225181556634.png" alt="image-20241225181556634" style="zoom:50%;" />
 
 ## Colon :
 
@@ -175,14 +175,14 @@ Use a colon after an independent clause to introduce a list, quote, explanation,
 **Examples:**
 
 - Example 1: list or explanation
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225182407916.png" alt="image-20241225182407916" style="zoom:50%;" />
+  <img src="./images/image-20241225182407916.png" alt="image-20241225182407916" style="zoom:50%;" />
 
 - Example 2: explanation or amplification
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225182527064.png" alt="image-20241225182527064" style="zoom:50%;" />
+  <img src="./images/image-20241225182527064.png" alt="image-20241225182527064" style="zoom:50%;" />
 - Example 3: quote, list of quotes
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225182759154.png" alt="image-20241225182759154" style="zoom:50%;" />
+  <img src="./images/image-20241225182759154.png" alt="image-20241225182759154" style="zoom:50%;" />
 - Example 4: to amplify or extend. Use a colon to join two independent clauses if the second amplifies or extends the first
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225183312215.png" alt="image-20241225183312215" style="zoom:50%;" />
+  <img src="./images/image-20241225183312215.png" alt="image-20241225183312215" style="zoom:50%;" />
 
 > The rules of three’s (lists, examples): when list examples, three examples are best
 
@@ -193,24 +193,24 @@ Use the dash to add emphasis or to insert an abrupt definition or description al
 **Examples**:
 
 - Example 1: emphasis
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225185910797.png" alt="image-20241225185910797" style="zoom:50%;" />
+  <img src="./images/image-20241225185910797.png" alt="image-20241225185910797" style="zoom:50%;" />
 - Example 2: emphasis and added information
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241225190021081.png" alt="image-20241225190021081" style="zoom:50%;" />
+  <img src="./images/image-20241225190021081.png" alt="image-20241225190021081" style="zoom:50%;" />
 
 ## Parallelism
 
 - Pairs of ideas joined by “and”, “or”, or “but” should be written in parallel form.
 - Lists of ideas should be written in parallel form.
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241226114959441.png" alt="image-20241226114959441" style="zoom:50%;" />
+  <img src="./images/image-20241226114959441.png" alt="image-20241226114959441" style="zoom:50%;" />
 - You need to make a choice and stick to it! (choose a structure and follow it)
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241226115205586.png" alt="image-20241226115205586" style="zoom:50%;" />
+  <img src="./images/image-20241226115205586.png" alt="image-20241226115205586" style="zoom:50%;" />
 
 **Examples**:
 
 - Example 1:
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241226115328309.png" alt="image-20241226115328309" style="zoom:50%;" />
+  <img src="./images/image-20241226115328309.png" alt="image-20241226115328309" style="zoom:50%;" />
 - Example 2:
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241226115418776.png" alt="image-20241226115418776" style="zoom:50%;" />
+  <img src="./images/image-20241226115418776.png" alt="image-20241226115418776" style="zoom:50%;" />
 
 ## Paragraphs
 
@@ -362,9 +362,9 @@ Ask them to point out particularly hard-to-read sentences and paragraphs!
 
 - Check for consistency
 - Check for  numerical consistency
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241227154216957.png" alt="image-20241227154216957" style="zoom:50%;" />
+  <img src="./images/image-20241227154216957.png" alt="image-20241227154216957" style="zoom:50%;" />
 - Check your references
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241227154329469.png" alt="image-20241227154329469" style="zoom:50%;" />
+  <img src="./images/image-20241227154329469.png" alt="image-20241227154329469" style="zoom:50%;" />
 
 # Section 5
 
@@ -448,7 +448,7 @@ Use the active voice: More lively! (use “we”)
 - Typically 3 paragraphs long: Recommended range: 2-5
 - It is **<u>not</u>** an exhaustive review of you general topic: should focus on the specific hypothesis/aim of your study
 
-<img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241228143649423.png" alt="image-20241228143649423" style="zoom:50%;" /><img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241228144711395.png" alt="image-20241228144711395" style="zoom:50%;" />
+<img src="./images/image-20241228143649423.png" alt="image-20241228143649423" style="zoom:50%;" /><img src="./images/image-20241228144711395.png" alt="image-20241228144711395" style="zoom:50%;" />
 
 ---
 
@@ -465,29 +465,29 @@ Use the active voice: More lively! (use “we”)
 
 ## Discussion
 
-<img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241228150605366.png" alt="image-20241228150605366" style="zoom:50%;" />
+<img src="./images/image-20241228150605366.png" alt="image-20241228150605366" style="zoom:50%;" />
 
 Invert the cone!
 
-<img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241228150628791.png" alt="image-20241228150628791" style="zoom: 67%;" />
+<img src="./images/image-20241228150628791.png" alt="image-20241228150628791" style="zoom: 67%;" />
 
-<img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241228150834941.png" alt="image-20241228150834941" style="zoom: 70%;" />
+<img src="./images/image-20241228150834941.png" alt="image-20241228150834941" style="zoom: 70%;" />
 
 
 
 ---
 
 **Tips**:
-<img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241228151306281.png" alt="image-20241228151306281" style="zoom:50%;" />
+<img src="./images/image-20241228151306281.png" alt="image-20241228151306281" style="zoom:50%;" />
 
 ---
 
 **Verb tense**:
-<img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241228152206501.png" alt="image-20241228152206501" style="zoom:50%;" />
+<img src="./images/image-20241228152206501.png" alt="image-20241228152206501" style="zoom:50%;" />
 
 ## Abstract
 
-<img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241228152650660.png" alt="image-20241228152650660" style="zoom:67%;" />
+<img src="./images/image-20241228152650660.png" alt="image-20241228152650660" style="zoom:67%;" />
 
 **General structure:**
 
@@ -553,7 +553,7 @@ Self-plagiarism and duplication: Recycling your own writing or data, including:
 
 - Assume there is some poor graduate student on the other end who did all the work, and whose confidence and career depend on your critique
 - Tone matters!
-  <img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241229132846968.png" alt="image-20241229132846968" style="zoom:50%;" />
+  <img src="./images/image-20241229132846968.png" alt="image-20241229132846968" style="zoom:50%;" />
 - Avoid criticizing the authors! Criticize the work
 - Avoid generalization; point out specific errors
 - Use positive instead of negative language where possible: “The paper is poorly written.” vs. “The writing and presentation could be improved. For example…”
@@ -569,7 +569,7 @@ Self-plagiarism and duplication: Recycling your own writing or data, including:
 
 ## Predatory Journal
 
-<img src="C:\Users\tbk\AppData\Roaming\Typora\typora-user-images\image-20241229134302803.png" alt="image-20241229134302803" style="zoom:50%;" />
+<img src="./images/image-20241229134302803.png" alt="image-20241229134302803" style="zoom:50%;" />
 
 Just do not submit your paper to predatory journal, unless you mean to do that.
 
