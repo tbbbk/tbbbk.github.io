@@ -2,7 +2,7 @@ import os
 import shutil
 import re
 
-markdown_file = 'D:\\BingkuiTongPersonalWebsite\\tbbbk.github.io\\blogs\\cs229\\images\\CS229.md'
+markdown_file = 'D:\\BingkuiTongPersonalWebsite\\tbbbk.github.io\\blogs\\cs229\\CS229.md'
 target_dir = r'D:\\BingkuiTongPersonalWebsite\\tbbbk.github.io\\blogs\\cs229\\images'
 
 pattern = r'C:\\Users\\tbk\\AppData\\Roaming\\Typora\\typora-user-images\\([a-zA-Z0-9_-]+\.png)'
