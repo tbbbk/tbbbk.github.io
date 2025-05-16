@@ -6,9 +6,9 @@ I just realized that I have less than four months left as an undergraduate. Due 
 
 Before graduation, I gonna:
 
-- [ ]  ⛩️ Visit **OSAKA**, which I planned to do in last December but cancelled.
-- [ ]  🎢 Try a **ROLLER COASTER**, which I was too afraid to ride at Hong Kong Disneyland.
-- [ ]  🚿 Go to a **BIG BATHHOUSE with friends** and stay up all night, as it was a deal we made if we both received PhD/master/job offers.
-- [ ]  ⛷️ Go **SKIING**, something I’ve always wanted to do but couldn’t, since there’s no snow in South China.
-- [ ]  📚 Complete **COMPUTER GRAPHICS (CMU 15-462/662)**, because it’s a subject I’ve always been passionate about but didn't have time to learn.
+- [ ] ⛩️ Visit **OSAKA**, which I planned to do in last December but cancelled.
+- [ ] 🎢 Try a **ROLLER COASTER**, which I was too afraid to ride at Hong Kong Disneyland.
+- [ ] 🚿 Go to a **BIG BATHHOUSE with friends** and stay up all night, as it was a deal we made if we both received PhD/master/job offers.
+- [ ] ⛷️ Go **SKIING**, something I’ve always wanted to do but couldn’t, since there’s no snow in South China.
+- [ ] 📚 Complete **COMPUTER GRAPHICS (CMU 15-462/662)**, because it’s a subject I’ve always been passionate about but didn't have time to learn.
 - [ ] … Keep tuned!
