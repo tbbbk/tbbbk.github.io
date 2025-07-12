@@ -13,9 +13,11 @@
       font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       min-height: 100vh;
       background-color: #f5f5f5;
+      padding: 20px 0;
+      box-sizing: border-box;
     }
     
     .container {
@@ -134,7 +136,7 @@
       text-align: left;
       max-width: 500px;
       margin: 0 auto;
-      max-height: 300px;
+      max-height: 200px;
       overflow-y: auto;
       border: 1px solid #ddd;
       border-radius: 5px;
@@ -323,114 +325,206 @@
       const widthInM = width / 100;
       const heightInM = height / 100;
       
-      // 计算实际体积：长*宽*高/单位体积货物数量 * 实际货物数量
+      // 计算实际体积：(长*宽*高/单位体积货物数量) * 实际货物数量
       const actualVolume = (lengthInM * widthInM * heightInM / unitQuantity) * actualQuantity;
       
       // 显示结果，保留7位小数
       const result = actualVolume.toFixed(7);
       document.getElementById("result").textContent = result;
       
-      // 查找合适的箱子
+      // 查找合适的箱子并显示运费计算区域
       findSuitableBoxes(actualVolume);
+      document.getElementById("shippingSection").style.display = "block";
+      document.getElementById("shippingResults").innerHTML = ""; // Clear previous results
+      
+      // 滚动到结果区域
+      document.getElementById("result").scrollIntoView({ behavior: 'smooth', block: 'center' });
       
       // 添加到历史记录
       const timestamp = new Date().toLocaleString('zh-CN');
-      const historyItem = {
-        calculation: `长${length}cm × 宽${width}cm × 高${height}cm ÷ ${unitQuantity} × ${actualQuantity} = ${result} m³`,
+      const historyItem = { 
+        calculation: `体积: ${result}m³`, 
         time: timestamp,
-        data: {
-          length, width, height, unitQuantity, actualQuantity, result
-        }
+        data: { length, width, height, unitQuantity, actualQuantity } 
       };
-      history.unshift(historyItem); // 最新的记录放在前面
-      
+      history.unshift(historyItem);
+
       // 限制历史记录数量为20条
       if (history.length > 20) {
-        history.splice(20);
+        history.pop();
       }
-      
+
       updateHistory();
     }
     
     function findSuitableBoxes(targetVolume) {
       const suggestionsDiv = document.getElementById("boxSuggestions");
-      const shippingSection = document.getElementById("shippingSection");
-      
-      // 找到最接近的更大的箱子
-      const largerBoxes = boxes.filter(box => box.volume > targetVolume);
-      const closestLarger = largerBoxes.length > 0 ? largerBoxes[0] : null;
-      
-      // 找到最接近的更小的箱子
-      const smallerBoxes = boxes.filter(box => box.volume <= targetVolume);
-      const closestSmaller = smallerBoxes.length > 0 ? smallerBoxes[smallerBoxes.length - 1] : null;
-      
-      // 组合推荐箱子
-      const suitableBoxes = [];
-      if (closestLarger) suitableBoxes.push(closestLarger);
-      if (closestSmaller) suitableBoxes.push(closestSmaller);
-      
-      if (suitableBoxes.length === 0) {
-        suggestionsDiv.innerHTML = "<p style='color: red;'>没有找到合适的箱子</p>";
-        shippingSection.style.display = "none";
-        return;
+      let html = "<h3>装箱方案推荐</h3>";
+      currentSuitableBoxes = []; // 重置当前推荐的箱子
+
+      if (targetVolume > 0.125) {
+        // --- 方案一：分箱 ---
+        html += `<h4>方案一：分箱方案</h4>`;
+        const largeBoxVolume = 0.125;
+        const largeBox = boxes.find(box => box.size === "50*50*50");
+        const largeBoxCount = Math.floor(targetVolume / largeBoxVolume);
+        const remainingVolume = targetVolume % largeBoxVolume;
+
+        html += `<p>首先使用 ${largeBoxCount} 个大箱 (50*50*50cm, 0.125m³)。</p>`;
+        if (remainingVolume > 0) {
+            html += `<p>剩余体积: ${remainingVolume.toFixed(7)}m³，需要额外一个箱子来装。</p>`;
+            const { closestLarger: remainderLarger, closestSmaller: remainderSmaller } = findClosestBoxes(remainingVolume);
+            
+            html += `<h5>剩余部分推荐箱子:</h5>`;
+            if (remainderLarger) {
+                currentSuitableBoxes.push({
+                    type: 'split',
+                    largeBox: largeBox,
+                    largeBoxCount: largeBoxCount,
+                    remainderBox: remainderLarger,
+                    name: `分箱推荐 (较大): ${largeBoxCount}*50x50x50 + 1*${remainderLarger.size}`
+                });
+                html += `<p><b>推荐 (较大):</b> ${remainderLarger.size}cm (${remainderLarger.volume.toFixed(6)}m³)</p>`;
+            }
+            if (remainderSmaller) {
+                 currentSuitableBoxes.push({
+                    type: 'split',
+                    largeBox: largeBox,
+                    largeBoxCount: largeBoxCount,
+                    remainderBox: remainderSmaller,
+                    name: `分箱推荐 (较小): ${largeBoxCount}*50x50x50 + 1*${remainderSmaller.size}`
+                });
+                html += `<p><b>推荐 (较小):</b> ${remainderSmaller.size}cm (${remainderSmaller.volume.toFixed(6)}m³)</p>`;
+            }
+        } else {
+            // 正好装满，没有剩余体积
+            currentSuitableBoxes.push({
+                type: 'split',
+                largeBox: largeBox,
+                largeBoxCount: largeBoxCount,
+                remainderBox: null, // No remainder box
+                name: `分箱推荐: ${largeBoxCount}*50x50x50`
+            });
+        }
+
+        // --- 方案二：不分箱 ---
+        html += `<hr style="margin: 20px 0;">`;
+        html += `<h4>方案二：不分箱方案 (使用单个大箱)</h4>`;
+        const { closestLarger, closestSmaller } = findClosestBoxes(targetVolume);
+        
+        if (closestLarger) {
+            currentSuitableBoxes.push({ type: 'single', box: closestLarger, name: `不分箱推荐 (较大): ${closestLarger.size}` });
+            html += `<p><b>推荐 (较大):</b> ${closestLarger.size}cm (${closestLarger.volume.toFixed(6)}m³)</p>`;
+        }
+        if (closestSmaller) {
+            currentSuitableBoxes.push({ type: 'single', box: closestSmaller, name: `不分箱推荐 (较小): ${closestSmaller.size}` });
+            html += `<p><b>推荐 (较小):</b> ${closestSmaller.size}cm (${closestSmaller.volume.toFixed(6)}m³)</p>`;
+        }
+
+      } else {
+        // --- 单箱方案 (体积 <= 0.125) ---
+        html += `<h4>方案：单个箱子</h4>`;
+        const { closestLarger, closestSmaller } = findClosestBoxes(targetVolume);
+        
+        if (closestLarger) {
+            currentSuitableBoxes.push({ type: 'single', box: closestLarger, name: `推荐 (较大): ${closestLarger.size}` });
+            html += `<p><b>推荐1 (较大):</b> ${closestLarger.size}cm (${closestLarger.volume.toFixed(6)}m³)</p>`;
+        }
+        if (closestSmaller) {
+            currentSuitableBoxes.push({ type: 'single', box: closestSmaller, name: `推荐 (较小): ${closestSmaller.size}` });
+            html += `<p><b>推荐2 (较小):</b> ${closestSmaller.size}cm (${closestSmaller.volume.toFixed(6)}m³)</p>`;
+        }
       }
       
-      // 保存当前推荐的箱子用于运费计算
-      currentSuitableBoxes = suitableBoxes;
-      
-      let html = "<h3>推荐箱子:</h3>";
-      
-      suitableBoxes.forEach((box, index) => {
-        const comparison = box.volume > targetVolume ? "比目标体积大" : "比目标体积小";
-        const diff = Math.abs(box.volume - targetVolume).toFixed(7);
-        html += `<p><strong>推荐${index + 1}:</strong> ${box.size} cm (体积: ${box.volume.toFixed(7)} m³, ${comparison}, 差值: ${diff} m³)</p>`;
-      });
-      
+      if (currentSuitableBoxes.length === 0) {
+        html += "<p>未找到合适的箱子。</p>";
+      }
+
       suggestionsDiv.innerHTML = html;
-      
-      // 显示运费计算区域
-      shippingSection.style.display = "block";
-      // 清空之前的运费结果
-      document.getElementById("shippingResults").innerHTML = "";
+    }
+
+    function findClosestBoxes(volume) {
+        const largerBoxes = boxes.filter(box => box.volume > volume);
+        const closestLarger = largerBoxes.length > 0 ? largerBoxes[0] : null;
+
+        const smallerBoxes = boxes.filter(box => box.volume <= volume);
+        const closestSmaller = smallerBoxes.length > 0 ? smallerBoxes[smallerBoxes.length - 1] : null;
+
+        return { closestLarger, closestSmaller };
     }
     
     function calculateShipping() {
       const pricePerWeight = parseFloat(document.getElementById("pricePerWeight").value);
-      
+
       if (isNaN(pricePerWeight) || pricePerWeight <= 0) {
         document.getElementById("shippingResults").innerHTML = "<p style='color: red;'>请输入有效的每重量单价</p>";
         return;
       }
+
+      let html = "<h3>各方案运费详情</h3>";
       
-      let html = "<h4>国际运费计算结果:</h4>";
-      
-      currentSuitableBoxes.forEach((box, index) => {
-        // 加3cm后的尺寸
-        const adjustedLength = (box.dimensions.l + 3) / 100; // 转换为米
-        const adjustedWidth = (box.dimensions.w + 3) / 100;  // 转换为米
-        const adjustedHeight = (box.dimensions.h + 3) / 100; // 转换为米
+      if (currentSuitableBoxes.length === 0) {
+        html += "<p>没有推荐的装箱方案，无法计算运费。</p>";
+        document.getElementById("shippingResults").innerHTML = html;
+        return;
+      }
+
+      currentSuitableBoxes.forEach((plan) => {
+        let totalCost = 0;
+        let planHtml = `<div style="margin: 15px 0; padding: 15px; background-color: white; border-radius: 5px; border: 1px solid #dee2e6;">`;
+        planHtml += `<h4 style="margin-top:0; color: #007bff;">${plan.name}</h4>`;
+
+        if (plan.type === 'single') {
+            const { cost, detailsHtml } = calculateBoxCost(plan.box, pricePerWeight);
+            totalCost = cost;
+            planHtml += detailsHtml;
+        } else if (plan.type === 'split') {
+            // 大箱子成本
+            const { cost: largeBoxCost, detailsHtml: largeBoxDetails } = calculateBoxCost(plan.largeBox, pricePerWeight);
+            const totalLargeBoxCost = largeBoxCost * plan.largeBoxCount;
+            planHtml += `<h5>大箱部分 (x${plan.largeBoxCount})</h5>`;
+            planHtml += largeBoxDetails;
+            planHtml += `<p style="font-weight: bold;">大箱总运费: ${totalLargeBoxCost.toFixed(2)} (${plan.largeBoxCount} × ${largeBoxCost.toFixed(2)})</p>`;
+
+            // 剩余部分箱子成本
+            if (plan.remainderBox) {
+                const { cost: remainderBoxCost, detailsHtml: remainderBoxDetails } = calculateBoxCost(plan.remainderBox, pricePerWeight);
+                planHtml += `<h5 style="margin-top: 15px;">剩余部分箱子</h5>`;
+                planHtml += remainderBoxDetails;
+                totalCost = totalLargeBoxCost + remainderBoxCost;
+            } else {
+                totalCost = totalLargeBoxCost;
+            }
+        }
         
-        // 计算调整后的体积
-        const adjustedVolume = adjustedLength * adjustedWidth * adjustedHeight;
-        
-        // 除以0.008计算重量
-        const weight = adjustedVolume / 0.006;
-        
-        // 计算运费
-        const shippingCost = weight * pricePerWeight;
-        
-        const orderText = `推荐${index + 1}`;
-        
-        html += `<div style="margin: 10px 0; padding: 10px; background-color: #f8f9fa; border-radius: 3px;">
-          <p><strong>${orderText}箱子:</strong> ${box.size} cm</p>
-          <p><strong>调整后尺寸:</strong> ${(box.dimensions.l + 3)}*${(box.dimensions.w + 3)}*${(box.dimensions.h + 3)} cm</p>
-          <p><strong>调整后体积:</strong> ${adjustedVolume.toFixed(7)} m³</p>
-          <p><strong>计算重量:</strong> ${weight.toFixed(7)} (体积÷0.006)</p>
-          <p><strong>国际运费:</strong> ${shippingCost.toFixed(2)} (重量×单价)</p>
-        </div>`;
+        planHtml += `<p style="font-weight: bold; font-size: 18px; color: #28a745; margin-top: 10px;">此方案总运费: ${totalCost.toFixed(2)}</p>`;
+        planHtml += `</div>`;
+        html += planHtml;
       });
-      
+
       document.getElementById("shippingResults").innerHTML = html;
+      document.getElementById("shippingResults").scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function calculateBoxCost(box, pricePerWeight) {
+        const adjustedLength = (box.dimensions.l + 3) / 100;
+        const adjustedWidth = (box.dimensions.w + 3) / 100;
+        const adjustedHeight = (box.dimensions.h + 3) / 100;
+        const adjustedVolume = adjustedLength * adjustedWidth * adjustedHeight;
+        const originalWeight = adjustedVolume / 0.006;
+        const roundedWeight = Math.ceil(originalWeight);
+        const shippingCost = roundedWeight * pricePerWeight;
+
+        let detailsHtml = `<div style="padding-left: 10px; border-left: 3px solid #eee;">`;
+        detailsHtml += `<p style="margin: 2px 0; font-weight: bold;">箱子规格: ${box.size}cm</p>`;
+        detailsHtml += `<p style="margin: 2px 0;">调整后尺寸: ${(box.dimensions.l + 3)}*${(box.dimensions.w + 3)}*${(box.dimensions.h + 3)}cm</p>`;
+        detailsHtml += `<p style="margin: 2px 0;">调整后体积: ${adjustedVolume.toFixed(6)}m³</p>`;
+        detailsHtml += `<p style="margin: 2px 0;">原始重量: ${originalWeight.toFixed(4)}kg (体积 ÷ 0.006)</p>`;
+        detailsHtml += `<p style="margin: 2px 0;">取整重量: ${roundedWeight}kg (向上取整)</p>`;
+        detailsHtml += `<p style="margin: 2px 0; font-weight: bold;">单个运费: ${shippingCost.toFixed(2)} (${roundedWeight}kg × ${pricePerWeight})</p>`;
+        detailsHtml += `</div>`;
+
+        return { cost: shippingCost, detailsHtml: detailsHtml };
     }
 
     function updateHistory() {
@@ -503,18 +597,53 @@
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
         // 简单的复制成功提示
-        const originalText = event.target.textContent;
-        event.target.textContent = '已复制';
-        event.target.style.backgroundColor = '#28a745';
-        event.target.style.color = 'white';
+        const target = event.target;
+        const originalText = target.textContent;
+        target.textContent = '已复制';
+        target.style.backgroundColor = '#28a745';
+        target.style.color = 'white';
         
         setTimeout(() => {
-          event.target.textContent = originalText;
-          event.target.style.backgroundColor = '';
-          event.target.style.color = '';
+          target.textContent = originalText;
+          target.style.backgroundColor = '';
+          target.style.color = '';
         }, 1000);
-      }).catch(() => {
-        alert('复制失败，请手动复制');
+      }).catch((err) => {
+        console.error('Async: Could not copy text: ', err);
+        // Fallback for older browsers
+        try {
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          
+          // Avoid scrolling to bottom
+          textArea.style.top = "0";
+          textArea.style.left = "0";
+          textArea.style.position = "fixed";
+
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+
+          const successful = document.execCommand('copy');
+          const target = event.target;
+          if(successful) {
+            const originalText = target.textContent;
+            target.textContent = '已复制';
+            target.style.backgroundColor = '#28a745';
+            target.style.color = 'white';
+            
+            setTimeout(() => {
+              target.textContent = originalText;
+              target.style.backgroundColor = '';
+              target.style.color = '';
+            }, 1000);
+          } else {
+            alert('复制失败，请手动复制');
+          }
+          document.body.removeChild(textArea);
+        } catch (err) {
+            alert('复制失败，请手动复制');
+        }
       });
     }
   </script>
