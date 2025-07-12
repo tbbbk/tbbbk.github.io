@@ -353,9 +353,21 @@
     }
     
     function findSuitableBoxes(targetVolume) {
-      const suitableBoxes = boxes.filter(box => box.volume > targetVolume);
       const suggestionsDiv = document.getElementById("boxSuggestions");
       const shippingSection = document.getElementById("shippingSection");
+      
+      // 找到最接近的更大的箱子
+      const largerBoxes = boxes.filter(box => box.volume > targetVolume);
+      const closestLarger = largerBoxes.length > 0 ? largerBoxes[0] : null;
+      
+      // 找到最接近的更小的箱子
+      const smallerBoxes = boxes.filter(box => box.volume <= targetVolume);
+      const closestSmaller = smallerBoxes.length > 0 ? smallerBoxes[smallerBoxes.length - 1] : null;
+      
+      // 组合推荐箱子
+      const suitableBoxes = [];
+      if (closestLarger) suitableBoxes.push(closestLarger);
+      if (closestSmaller) suitableBoxes.push(closestSmaller);
       
       if (suitableBoxes.length === 0) {
         suggestionsDiv.innerHTML = "<p style='color: red;'>没有找到合适的箱子</p>";
@@ -364,17 +376,15 @@
       }
       
       // 保存当前推荐的箱子用于运费计算
-      currentSuitableBoxes = suitableBoxes.slice(0, 2);
+      currentSuitableBoxes = suitableBoxes;
       
       let html = "<h3>推荐箱子:</h3>";
       
-      if (suitableBoxes.length >= 1) {
-        html += `<p><strong>第一推荐:</strong> ${suitableBoxes[0].size} cm (体积: ${suitableBoxes[0].volume.toFixed(7)} m³)</p>`;
-      }
-      
-      if (suitableBoxes.length >= 2) {
-        html += `<p><strong>第二推荐:</strong> ${suitableBoxes[1].size} cm (体积: ${suitableBoxes[1].volume.toFixed(7)} m³)</p>`;
-      }
+      suitableBoxes.forEach((box, index) => {
+        const comparison = box.volume > targetVolume ? "比目标体积大" : "比目标体积小";
+        const diff = Math.abs(box.volume - targetVolume).toFixed(7);
+        html += `<p><strong>推荐${index + 1}:</strong> ${box.size} cm (体积: ${box.volume.toFixed(7)} m³, ${comparison}, 差值: ${diff} m³)</p>`;
+      });
       
       suggestionsDiv.innerHTML = html;
       
@@ -409,7 +419,7 @@
         // 计算运费
         const shippingCost = weight * pricePerWeight;
         
-        const orderText = index === 0 ? "第一推荐" : "第二推荐";
+        const orderText = `推荐${index + 1}`;
         
         html += `<div style="margin: 10px 0; padding: 10px; background-color: #f8f9fa; border-radius: 3px;">
           <p><strong>${orderText}箱子:</strong> ${box.size} cm</p>
