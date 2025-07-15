@@ -16,17 +16,98 @@
       align-items: flex-start;
       min-height: 100vh;
       background-color: #f5f5f5;
-      padding: 20px 0;
+      padding: 20px;
       box-sizing: border-box;
     }
     
+    .main-wrapper {
+      display: flex;
+      gap: 20px;
+      max-width: 1200px;
+      width: 100%;
+    }
+    
     .container {
+      flex: 1;
       max-width: 800px;
       padding: 30px;
       text-align: center;
       background-color: white;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .sidebar {
+      width: 300px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      height: fit-content;
+      position: sticky;
+      top: 20px;
+    }
+    
+    .sidebar h3 {
+      margin-top: 0;
+      color: #007bff;
+      text-align: center;
+    }
+    
+    .sidebar .input-group {
+      margin: 15px 0;
+    }
+    
+    .sidebar input {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    
+    .sidebar button {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    
+    .sidebar button:hover {
+      background-color: #218838;
+    }
+    
+    .sidebar #quickResults {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 5px;
+      border-left: 4px solid #28a745;
+      font-size: 14px;
+    }
+    
+    .sidebar #quickResults h4 {
+      margin-top: 0;
+      color: #28a745;
+      font-size: 16px;
+    }
+    
+    .sidebar #quickResults p {
+      margin: 8px 0;
+      line-height: 1.4;
+    }
+    
+    .sidebar-divider {
+      height: 1px;
+      background-color: #dee2e6;
+      margin: 20px 0;
     }
     
     .input-group {
@@ -169,6 +250,22 @@
       margin-top: 0;
       color: #28a745;
     }
+
+    #domesticShippingSection {
+      margin: 20px 0;
+      padding: 15px;
+      background-color: #fffbe6;
+      border-radius: 5px;
+      border-left: 4px solid #ffc107;
+    }
+
+    #domesticShippingResults {
+       margin-top: 15px;
+      padding: 10px;
+      background-color: #e9f7ef;
+      border-radius: 5px;
+      border-left: 4px solid #28a745;
+    }
     
     #history {
       text-align: left;
@@ -246,11 +343,12 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>体积计算器</h1>
-    <div style="text-align: center; margin: 20px 0;">
-      <img src="../assets/images/shu.gif" alt="装饰图片" style="max-width: 150px; height: auto; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-    </div>
+  <div class="main-wrapper">
+    <div class="container">
+      <h1>体积计算器</h1>
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="../assets/images/shu.gif" alt="装饰图片" style="max-width: 150px; height: auto; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      </div>
     <div id="items-wrapper">
       <div class="item-container">
         <div class="item-header">
@@ -287,11 +385,26 @@
     
     <div id="shippingSection" style="display: none;">
       <div class="input-group">
-        <label>每重量单价:</label>
-        <input type="number" id="pricePerWeight" placeholder="输入每重量单价" step="0.01">
+        <label for="internationalDestination">国际目的地:</label>
+        <select id="internationalDestination" style="padding: 10px; font-size: 16px; border-radius: 5px; margin-right: 10px;">
+          <option value="美国">美国</option>
+          <option value="欧洲">欧洲</option>
+          <option value="其他">其他</option>
+        </select>
+        <label>每重量单价 (国际):</label>
+        <input type="number" id="pricePerWeight" placeholder="输入国际运费每重量单价" step="0.01">
         <button onclick="calculateShipping()" style="margin-left: 10px;">计算国际运费</button>
       </div>
       <div id="shippingResults"></div>
+    </div>
+
+    <div id="domesticShippingSection" style="display: none;">
+      <div class="input-group">
+        <label for="destination">目的地:</label>
+        <select id="destination" style="padding: 10px; font-size: 16px; border-radius: 5px;"></select>
+        <button onclick="calculateDomesticShipping()" style="margin-left: 10px;">计算国内运费</button>
+      </div>
+      <div id="domesticShippingResults"></div>
     </div>
 
     <h2>计算历史</h2>
@@ -301,11 +414,187 @@
       <p id="noHistory" style="text-align: center; color: #666; font-style: italic;">暂无计算历史</p>
     </div>
   </div>
+  
+  <!-- 侧边栏 - 快速箱子推荐 -->
+  <div class="sidebar">
+    <h3>快速箱子推荐</h3>
+    
+    <div class="input-group">
+      <label>方式一：直接输入体积 (m³)</label>
+      <input type="number" id="quickVolume" placeholder="输入体积" step="0.000001">
+      <button onclick="quickRecommendByVolume()">推荐箱子</button>
+    </div>
+    
+    <div class="sidebar-divider"></div>
+    
+    <div class="input-group">
+      <label>方式二：输入长宽高 (cm)</label>
+      <input type="number" id="quickLength" placeholder="长度" step="0.01">
+      <input type="number" id="quickWidth" placeholder="宽度" step="0.01">
+      <input type="number" id="quickHeight" placeholder="高度" step="0.01">
+      <button onclick="quickRecommendByDimensions()">推荐箱子</button>
+    </div>
+    
+    <div id="quickResults" style="display: none;">
+      <h4>推荐结果</h4>
+      <div id="quickResultsContent"></div>
+    </div>
+  </div>
+  
+  </div>
 
   <script>
     const history = [];
     let currentSuitableBoxes = []; // 存储当前推荐的箱子
     
+    const domesticShippingRates = {
+        "天津": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.4},
+            "百世":    {"最低": 20,  "0.4下/10000": 0.8, "0.4-4.99/8000": 0.8},
+            "顺心捷达": {"最低": 30,  "0.55/10000": 1.0}
+        },
+        "北京": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.4},
+            "百世":    {"最低": 30,  "0.4下/10000": 1.3, "0.4-4.99/8000": 1.3},
+            "顺心捷达": {"最低": 33,  "0.55/10000": 1.4}
+        },
+        "河北": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.4},
+            "百世":    {"最低": 30,  "0.4下/10000": 1.1, "0.4-4.99/8000": 1.1},
+            "顺心捷达": {"最低": 33,  "0.55/10000": 1.2}
+        },
+        "山东": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.4},
+            "百世":    {"最低": 30,  "0.4下/10000": 1.1, "0.4-4.99/8000": 1.1},
+            "顺心捷达": {"最低": 25,  "0.55/10000": 1.25}
+        },
+        "江浙沪": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.8},
+            "百世":    {"最低": 30,  "0.4下/10000": 1.3, "0.4-4.99/8000": 1.3},
+            "顺心捷达": {"最低": 30,  "0.55/10000": 1.3}
+        },
+        "河南": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.8},
+            "百世":    {"最低": 30,  "0.4下/10000": 1.2, "0.4-4.99/8000": 1.2},
+            "顺心捷达": {"最低": 30,  "0.55/10000": 1.2}
+        },
+        "安徽": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.8},
+            "百世":    {"最低": 30,  "0.4下/10000": 1.3, "0.4-4.99/8000": 1.3},
+            "顺心捷达": {"最低": 30,  "0.55/10000": 1.2}
+        },
+        "广东": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.8},
+            "百世":    {"最低": 35,  "0.4下/10000": 1.6, "0.4-4.99/8000": 1.6},
+            "顺心捷达": {"最低": 35,  "0.55/10000": 1.6}
+        },
+        "湖南": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 2.0},
+            "百世":    {"最低": 35,  "0.4下/10000": 1.5, "0.4-4.99/8000": 1.5},
+            "顺心捷达": {"最低": 30,  "0.55/10000": 1.6}
+        },
+        "湖北": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.8},
+            "百世":    {"最低": 35,  "0.4下/10000": 1.5, "0.4-4.99/8000": 1.5},
+            "顺心捷达": {"最低": 35,  "0.55/10000": 1.3}
+        },
+        "山西": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.8},
+            "百世":    {"最低": 30,  "0.4下/10000": 1.3, "0.4-4.99/8000": 1.3},
+            "顺心捷达": {"最低": 30,  "0.55/10000": 1.3}
+        },
+        "江西": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.8},
+            "百世":    {"最低": 35,  "0.4下/10000": 1.6, "0.4-4.99/8000": 1.6},
+            "顺心捷达": {"最低": 35,  "0.55/10000": 1.5}
+        },
+        "陕西": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.8},
+            "百世":    {"最低": 35,  "0.4下/10000": 1.5, "0.4-4.99/8000": 1.5},
+            "顺心捷达": {"最低": 30,  "0.55/10000": 1.5}
+        },
+        "辽宁": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.8},
+            "百世":    {"最低": 30,  "0.4下/10000": 1.5, "0.4-4.99/8000": 1.5},
+            "顺心捷达": {"最低": 45,  "0.55/10000": 1.5}
+        },
+        "吉林": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.8},
+            "百世":    {"最低": 35,  "0.4下/10000": 1.6, "0.4-4.99/8000": 1.6},
+            "顺心捷达": {"最低": 35,  "0.55/10000": 1.7}
+        },
+        "黑龙江": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 1.8},
+            "百世":    {"最低": 35,  "0.4下/10000": 1.6, "0.4-4.99/8000": 1.6},
+            "顺心捷达": {"最低": 60,  "0.55/10000": 1.9}
+        },
+        "福建": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 2.2},
+            "百世":    {"最低": 40,  "0.4下/10000": 1.7, "0.4-4.99/8000": 1.7},
+            "顺心捷达": {"最低": 30,  "0.55/10000": 1.5}
+        },
+        "四川重庆": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 2.2},
+            "百世":    {"最低": 40,  "0.4下/10000": 1.8, "0.4-4.99/8000": 1.8},
+            "顺心捷达": {"最低": 40,  "0.55/10000": 1.6}
+        },
+        "内蒙一区": {
+            "韵达":    {"3KG":  3.4, "5KG": 7.0, "5上": 2.2},
+            "百世":    {"最低": 35,  "0.4下/10000": 1.7, "0.4-4.99/8000": 1.7},
+            "顺心捷达": {"最低": 70,  "0.55/10000": 2.0}
+        },
+        "云南": {
+            "韵达":    {"3KG":  3.7, "5KG": 9.0, "5上": 3.5},
+            "百世":    {"最低": 45,  "0.4下/10000": 2.5, "0.4-4.99/8000": 2.5},
+            "顺心捷达": {"最低": 45,  "0.55/10000": 2.5}
+        },
+        "贵州": {
+            "韵达":    {"3KG":  3.7, "5KG": 9.0, "5上": 3.5},
+            "百世":    {"最低": 45,  "0.4下/10000": 2.0, "0.4-4.99/8000": 2.0},
+            "顺心捷达": {"最低": 75,  "0.55/10000": 3.0}
+        },
+        "广西": {
+            "韵达":    {"3KG":  3.7, "5KG": 9.0, "5上": 3.5},
+            "百世":    {"最低": 45,  "0.4下/10000": 2.5, "0.4-4.99/8000": 2.5},
+            "顺心捷达": {"最低": 45,  "0.55/10000": 1.6}
+        },
+        "甘肃": {
+            "韵达":    {"3KG":  3.7, "5KG": 9.0, "5上": 3.0},
+            "百世":    {"最低": 50,  "0.4下/10000": 2.5, "0.4-4.99/8000": 2.5},
+            "顺心捷达": {"最低": 70,  "0.55/10000": 3.5}
+        },
+        "宁夏": {
+            "韵达":    {"3KG":  3.7, "5KG": 9.0, "5上": 3.0},
+            "百世":    {"最低": 50,  "0.4下/10000": 2.0, "0.4-4.99/8000": 2.0},
+            "顺心捷达": {"最低": 70,  "0.55/10000": 1.9}
+        },
+        "海南": {
+            "韵达":    {"3KG":  5.5, "5KG": null, "5上": null},
+            "百世":    {"最低": 50,  "0.4下/10000": 2.8, "0.4-4.99/8000": 2.8},
+            "顺心捷达": {"最低": 60,  "0.55/10000": 3.0}
+        },
+        "青海": {
+            "韵达":    {"3KG":  5.5, "5KG": null, "5上": null},
+            "百世":    {"最低": 50,  "0.4下/10000": 3.0, "0.4-4.99/8000": 3.0},
+            "顺心捷达": {"最低": 90,  "0.55/10000": 3.5}
+        },
+        "新疆": {
+            "韵达":    {"3KG": 13.0, "5KG": null, "5上": null},
+            "百世":    {"最低": 80,  "0.4下/10000": 5.0, "0.4-4.99/8000": 5.0},
+            "顺心捷达": {"最低": 90,  "0.55/10000": 5.0}
+        },
+        "西藏": {
+            "韵达":    {"3KG": 22.0, "5KG": null, "5上": null},
+            "百世":    {"最低": 80,  "0.4下/10000": 6.0, "0.4-4.99/8000": 6.0},
+            "顺心捷达": {"最低": 90,  "0.55/10000": 5.0}
+        },
+        "内蒙二区": {
+            "韵达":    {"3KG":  5.5, "5KG": null, "5上": null},
+            "百世":    {"最低": null,"0.4下/10000": null,"0.4-4.99/8000": null},
+            "顺心捷达": {"最低": null,"0.55/10000": null}
+        }
+    };
+
     // 箱子数据 (长*宽*高，单位：cm)
     const boxes = [
       {size: "18*10*12", volume: 0.002160, dimensions: {l: 18, w: 10, h: 12}},
@@ -348,6 +637,17 @@
     boxes.sort((a, b) => a.volume - b.volume);
 
     let itemCount = 1;
+
+    window.onload = function() {
+      const destinationSelect = document.getElementById('destination');
+      const destinations = Object.keys(domesticShippingRates);
+      destinations.forEach(dest => {
+        const option = document.createElement('option');
+        option.value = dest;
+        option.textContent = dest;
+        destinationSelect.appendChild(option);
+      });
+    };
 
     function addItem() {
       itemCount++;
@@ -438,7 +738,9 @@
       
       findSuitableBoxes(totalActualVolume);
       document.getElementById("shippingSection").style.display = "block";
+      document.getElementById("domesticShippingSection").style.display = "block";
       document.getElementById("shippingResults").innerHTML = ""; 
+      document.getElementById("domesticShippingResults").innerHTML = "";
       
       document.getElementById("result").scrollIntoView({ behavior: 'smooth', block: 'center' });
       
@@ -555,13 +857,28 @@
     
     function calculateShipping() {
       const pricePerWeight = parseFloat(document.getElementById("pricePerWeight").value);
+      const destination = document.getElementById("internationalDestination").value;
 
       if (isNaN(pricePerWeight) || pricePerWeight <= 0) {
         document.getElementById("shippingResults").innerHTML = "<p style='color: red;'>请输入有效的每重量单价</p>";
         return;
       }
 
-      let html = "<h3>各方案运费详情</h3>";
+      // 获取最低重量限制
+      let minWeight = 0;
+      switch (destination) {
+        case "美国":
+          minWeight = 12;
+          break;
+        case "欧洲":
+          minWeight = 21;
+          break;
+        case "其他":
+          minWeight = 0;
+          break;
+      }
+
+      let html = `<h3>各方案运费详情 (目的地: ${destination})</h3>`;
       
       if (currentSuitableBoxes.length === 0) {
         html += "<p>没有推荐的装箱方案，无法计算运费。</p>";
@@ -575,12 +892,12 @@
         planHtml += `<h4 style="margin-top:0; color: #007bff;">${plan.name}</h4>`;
 
         if (plan.type === 'single') {
-            const { cost, detailsHtml } = calculateBoxCost(plan.box, pricePerWeight);
+            const { cost, detailsHtml } = calculateBoxCost(plan.box, pricePerWeight, minWeight);
             totalCost = cost;
             planHtml += detailsHtml;
         } else if (plan.type === 'split') {
             // 大箱子成本
-            const { cost: largeBoxCost, detailsHtml: largeBoxDetails } = calculateBoxCost(plan.largeBox, pricePerWeight);
+            const { cost: largeBoxCost, detailsHtml: largeBoxDetails } = calculateBoxCost(plan.largeBox, pricePerWeight, minWeight);
             const totalLargeBoxCost = largeBoxCost * plan.largeBoxCount;
             planHtml += `<h5>大箱部分 (x${plan.largeBoxCount})</h5>`;
             planHtml += largeBoxDetails;
@@ -588,7 +905,7 @@
 
             // 剩余部分箱子成本
             if (plan.remainderBox) {
-                const { cost: remainderBoxCost, detailsHtml: remainderBoxDetails } = calculateBoxCost(plan.remainderBox, pricePerWeight);
+                const { cost: remainderBoxCost, detailsHtml: remainderBoxDetails } = calculateBoxCost(plan.remainderBox, pricePerWeight, minWeight);
                 planHtml += `<h5 style="margin-top: 15px;">剩余部分箱子</h5>`;
                 planHtml += remainderBoxDetails;
                 totalCost = totalLargeBoxCost + remainderBoxCost;
@@ -606,14 +923,154 @@
       document.getElementById("shippingResults").scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    function calculateBoxCost(box, pricePerWeight) {
+    function calculateDomesticShipping() {
+        const destination = document.getElementById("destination").value;
+        const rates = domesticShippingRates[destination];
+        const resultsDiv = document.getElementById("domesticShippingResults");
+
+        if (!rates) {
+            resultsDiv.innerHTML = "<p style='color: red;'>请选择一个有效的目的地。</p>";
+            return;
+        }
+
+        let html = `<h3>国内运费详情 (目的地: ${destination})</h3>`;
+
+        if (currentSuitableBoxes.length === 0) {
+            html += "<p>没有推荐的装箱方案，无法计算运费。</p>";
+            resultsDiv.innerHTML = html;
+            return;
+        }
+
+        currentSuitableBoxes.forEach(plan => {
+            html += `<div style="margin: 15px 0; padding: 15px; background-color: white; border-radius: 5px; border: 1px solid #dee2e6;">`;
+            html += `<h4 style="margin-top:0; color: #007bff;">${plan.name}</h4>`;
+
+            // 1. Calculate total adjusted volume for the plan
+            let totalAdjustedVolume = 0;
+            if (plan.type === 'single') {
+                totalAdjustedVolume = getAdjustedVolume(plan.box);
+            } else if (plan.type === 'split') {
+                totalAdjustedVolume += getAdjustedVolume(plan.largeBox) * plan.largeBoxCount;
+                if (plan.remainderBox) {
+                    totalAdjustedVolume += getAdjustedVolume(plan.remainderBox);
+                }
+            } else {
+                // 处理没有类型字段的方案（向后兼容）
+                if (plan.box) {
+                    totalAdjustedVolume = getAdjustedVolume(plan.box);
+                }
+            }
+            html += `<p><b>总外箱体积:</b> ${totalAdjustedVolume.toFixed(6)} m³</p><hr>`;
+
+            // 2. Calculate cost for each company
+            html += calculateCompanyCost("韵达", rates["韵达"], totalAdjustedVolume);
+            html += calculateCompanyCost("百世", rates["百世"], totalAdjustedVolume);
+            html += calculateCompanyCost("顺心捷达", rates["顺心捷达"], totalAdjustedVolume);
+
+            html += `</div>`;
+        });
+
+        resultsDiv.innerHTML = html;
+        resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function getAdjustedVolume(box) {
+        if (!box) return 0;
         const adjustedLength = (box.dimensions.l + 3) / 100;
         const adjustedWidth = (box.dimensions.w + 3) / 100;
         const adjustedHeight = (box.dimensions.h + 3) / 100;
-        const adjustedVolume = adjustedLength * adjustedWidth * adjustedHeight;
+        return adjustedLength * adjustedWidth * adjustedHeight;
+    }
+
+    function calculateCompanyCost(companyName, companyRates, volume) {
+        let costHtml = `<h5 style="color: #17a2b8;">${companyName}</h5>`;
+        if (!companyRates || Object.values(companyRates).every(val => val === null)) {
+            return costHtml + "<p>此地区不支持</p>";
+        }
+
+        let weight = 0;
+        let cost = 0;
+        let calculationDetails = "";
+
+        switch (companyName) {
+            case "韵达":
+                weight = volume / 0.01;
+                calculationDetails = `<p>计算方式: 体积 / 0.01 (韵达抛比)</p>`;
+                weight = Math.ceil(weight); // 向上取整
+                calculationDetails += `<p>抛重: ${weight} kg (向上取整)</p>`;
+                if (weight <= 3) {
+                    cost = companyRates["3KG"];
+                    calculationDetails += `<p>计算价格: ¥${cost} (3KG内一口价)</p>`;
+                    calculationDetails += `<p>最终价格: ¥${cost}</p>`;
+                } else if (weight <= 5 && companyRates["5KG"] !== null) {
+                    cost = companyRates["5KG"];
+                    calculationDetails += `<p>计算价格: ¥${cost} (5KG内一口价)</p>`;
+                    calculationDetails += `<p>最终价格: ¥${cost}</p>`;
+                } else if (companyRates["5KG"] !== null && companyRates["5上"] !== null) {
+                    // 修正：超过5kg的重量全部按5上价格计算
+                    cost = weight * companyRates["5上"];
+                    calculationDetails += `<p>计算价格: ¥${cost.toFixed(2)} (${weight}kg × ${companyRates["5上"]})</p>`;
+                    calculationDetails += `<p>最终价格: ¥${cost.toFixed(2)}</p>`;
+                } else {
+                    // 只有3KG价格可用的情况
+                    cost = companyRates["3KG"];
+                    calculationDetails += `<p>计算价格: ¥${cost} (仅3KG内一口价可用)</p>`;
+                    calculationDetails += `<p>最终价格: ¥${cost}</p>`;
+                }
+                break;
+
+            case "百世":
+                if (volume <= 0.4) {
+                    weight = volume / 0.01;
+                    calculationDetails = `<p>计算方式: 体积 / 0.01 (因体积 ≤ 0.4m³)</p>`;
+                } else if (volume > 0.4 && volume < 4.99) {
+                    weight = volume / 0.008;
+                    calculationDetails = `<p>计算方式: 体积 / 0.008 (因体积 > 0.4m³)</p>`;
+                } else {
+                     return costHtml + "<p>体积超出范围 (≥ 4.99m³)</p>";
+                }
+                weight = Math.ceil(weight); // 向上取整
+                calculationDetails += `<p>抛重: ${weight} kg (向上取整)</p>`;
+                cost = weight * companyRates["0.4下/10000"];
+                calculationDetails += `<p>计算价格: ¥${cost.toFixed(2)} (${weight}kg × ${companyRates["0.4下/10000"]})</p>`;
+                if (cost < companyRates["最低"]) {
+                    cost = companyRates["最低"];
+                    calculationDetails += `<p>最终价格: ¥${cost} (因计算价低于最低消费 ${companyRates["最低"]})</p>`;
+                } else {
+                    calculationDetails += `<p>最终价格: ¥${cost.toFixed(2)}</p>`;
+                }
+                break;
+
+            case "顺心捷达":
+                 if (volume < 0.55) {
+                    weight = volume / 0.01;
+                    calculationDetails = `<p>计算方式: 体积 / 0.01 (因体积 < 0.55m³)</p>`;
+                } else {
+                    return costHtml + "<p>体积超出范围 (≥ 0.55m³)</p>";
+                }
+                weight = Math.ceil(weight); // 向上取整
+                calculationDetails += `<p>抛重: ${weight} kg (向上取整)</p>`;
+                cost = weight * companyRates["0.55/10000"];
+                calculationDetails += `<p>计算价格: ¥${cost.toFixed(2)} (${weight}kg × ${companyRates["0.55/10000"]})</p>`;
+                if (cost < companyRates["最低"]) {
+                    cost = companyRates["最低"];
+                    calculationDetails += `<p>最终价格: ¥${cost} (因计算价低于最低消费 ${companyRates["最低"]})</p>`;
+                } else {
+                    calculationDetails += `<p>最终价格: ¥${cost.toFixed(2)}</p>`;
+                }
+                break;
+        }
+
+        costHtml += `<div style="padding-left: 10px; border-left: 3px solid #eee;">${calculationDetails}</div>`;
+        return costHtml;
+    }
+
+    function calculateBoxCost(box, pricePerWeight, minWeight = 0) {
+        const adjustedVolume = getAdjustedVolume(box);
         const originalWeight = adjustedVolume / 0.006;
         const roundedWeight = Math.ceil(originalWeight);
-        const shippingCost = roundedWeight * pricePerWeight;
+        const finalWeight = Math.max(roundedWeight, minWeight);
+        const shippingCost = finalWeight * pricePerWeight;
 
         let detailsHtml = `<div style="padding-left: 10px; border-left: 3px solid #eee;">`;
         detailsHtml += `<p style="margin: 2px 0; font-weight: bold;">箱子规格: ${box.size}cm</p>`;
@@ -621,7 +1078,15 @@
         detailsHtml += `<p style="margin: 2px 0;">调整后体积: ${adjustedVolume.toFixed(6)}m³</p>`;
         detailsHtml += `<p style="margin: 2px 0;">原始重量: ${originalWeight.toFixed(4)}kg (体积 ÷ 0.006)</p>`;
         detailsHtml += `<p style="margin: 2px 0;">取整重量: ${roundedWeight}kg (向上取整)</p>`;
-        detailsHtml += `<p style="margin: 2px 0; font-weight: bold;">单个运费: ${shippingCost.toFixed(2)} (${roundedWeight}kg × ${pricePerWeight})</p>`;
+        
+        if (minWeight > 0 && roundedWeight < minWeight) {
+            detailsHtml += `<p style="margin: 2px 0; color: #ffc107;">最低重量限制: ${minWeight}kg</p>`;
+            detailsHtml += `<p style="margin: 2px 0;">计费重量: ${finalWeight}kg (取较大值)</p>`;
+        } else {
+            detailsHtml += `<p style="margin: 2px 0;">计费重量: ${finalWeight}kg</p>`;
+        }
+        
+        detailsHtml += `<p style="margin: 2px 0; font-weight: bold;">单个运费: ${shippingCost.toFixed(2)} (${finalWeight}kg × ${pricePerWeight})</p>`;
         detailsHtml += `</div>`;
 
         return { cost: shippingCost, detailsHtml: detailsHtml };
@@ -753,6 +1218,63 @@
             alert('复制失败，请手动复制');
         }
       });
+    }
+    
+    // 快速推荐功能
+    function quickRecommendByVolume() {
+      const volume = parseFloat(document.getElementById("quickVolume").value);
+      
+      if (isNaN(volume) || volume <= 0) {
+        document.getElementById("quickResults").style.display = "none";
+        alert("请输入有效的体积值");
+        return;
+      }
+      
+      displayQuickRecommendation(volume);
+    }
+    
+    function quickRecommendByDimensions() {
+      const length = parseFloat(document.getElementById("quickLength").value);
+      const width = parseFloat(document.getElementById("quickWidth").value);
+      const height = parseFloat(document.getElementById("quickHeight").value);
+      
+      if (isNaN(length) || isNaN(width) || isNaN(height) || length <= 0 || width <= 0 || height <= 0) {
+        document.getElementById("quickResults").style.display = "none";
+        alert("请输入有效的长宽高值");
+        return;
+      }
+      
+      // 转换为m³
+      const volume = (length / 100) * (width / 100) * (height / 100);
+      displayQuickRecommendation(volume);
+    }
+    
+    function displayQuickRecommendation(targetVolume) {
+      const resultsDiv = document.getElementById("quickResults");
+      const contentDiv = document.getElementById("quickResultsContent");
+      
+      const { closestLarger, closestSmaller } = findClosestBoxes(targetVolume);
+      
+      let html = `<p><strong>目标体积:</strong> ${targetVolume.toFixed(6)} m³</p>`;
+      
+      if (closestLarger) {
+        html += `<p><strong>推荐 (较大):</strong><br>`;
+        html += `${closestLarger.size}cm<br>`;
+        html += `体积: ${closestLarger.volume.toFixed(6)}m³</p>`;
+      }
+      
+      if (closestSmaller) {
+        html += `<p><strong>推荐 (较小):</strong><br>`;
+        html += `${closestSmaller.size}cm<br>`;
+        html += `体积: ${closestSmaller.volume.toFixed(6)}m³</p>`;
+      }
+      
+      if (!closestLarger && !closestSmaller) {
+        html += `<p style="color: #dc3545;">未找到合适的箱子</p>`;
+      }
+      
+      contentDiv.innerHTML = html;
+      resultsDiv.style.display = "block";
     }
   </script>
 </body>
