@@ -672,5 +672,792 @@ If we do not use the premulitplied alpha, there is fringe. Because the upsampled
 
 # 3. Geometry
 
+## **3.1 Encode Geometry**
 
+### 3.1.1 Implicit Representations
+
+Points aren’t known directly, but satisfy some relationship. E.g., unit sphere is all points such that $x^2+y^2+z^2=1$.
+$$
+f(x,y,z)=2-1.23
+$$
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250718202442048.png" alt="image-20250718202442048" style="zoom:50%;" />
+
+Now, find a point on the plane. And we can observe that implicit surfaces make sampling hard.
+$$
+f(x,y,z) = x^2 + y^2 + z^2 - 1.
+$$
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250718202548213.png" alt="image-20250718202548213" style="zoom:50%;" />
+
+Now check if a point is inside or outside the unit sphere. And we can observe implicit surfaces make  inside/outside tests task easy.
+
+**Common Implicit Representations:**
+
+- Algebraic Surfaces
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250718203411978.png" alt="image-20250718203411978" style="zoom:50%;" />
+
+- Constructive Solid Geometry (Boolean operations)
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250718203447219.png" alt="image-20250718203447219" style="zoom:50%;" />
+
+- Blobby Surfaces (Gradually blend surfaces together)
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250718203538248.png" alt="image-20250718203538248" style="zoom:50%;" />
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250718203600446.png" alt="image-20250718203600446" style="zoom:50%;" />
+
+- Blending Distance Functions
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250718203730717.png" alt="image-20250718203730717" style="zoom:50%;" />
+
+- Level Set Methods (Surface is found where interpolated values equal zero )
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250718203756044.png" alt="image-20250718203756044" style="zoom:50%;" />
+
+- Mandelbrot Set 
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250718203847745.png" alt="image-20250718203847745" style="zoom:50%;" />
+
+Pros: 
+
+- description can be very compact (e.g., a polynomial) 
+- easy to determine if a point is in our shape (just plug it in!) 
+- other queries may also be easy (e.g., distance to surface) 
+- for simple shapes, exact description/no sampling error 
+- easy to handle changes in topology (e.g., fluid)  
+
+Cons: 
+
+- expensive to find all points in the shape (e.g., for drawing) 
+- very difficult to model complex shapes
+
+### 3.1.2 Explicit Representations
+
+All points are given directly. E.g., points on sphere are $(cos(u)sin(v),sin(u)sin(v),cos(v)),\text{ for }0\le u\lt 2\pi\text{ and  }0\le v \le\pi$
+
+Many explicit representations in graphics. Like  triangle meshes,  polygon meshes, subdivision surfaces, NURBS  point clouds…
+
+Unsimilar to implicit representations, explicit representations make sampling easy but inside/outside test hard.
+
+**Common Explicit Representations:**
+
+- Point Cloud
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250718204044544.png" alt="image-20250718204044544" style="zoom:50%;" />
+
+- Polygon Mesh ( Store vertices and polygons)
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250718204111958.png" alt="image-20250718204111958" style="zoom:50%;" />
+
+- Bézier Curves/Surfaces
+
+  Bernstein Basis:
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719152619267.png" alt="image-20250719152619267" style="zoom:50%;" />
+
+  It can use to interpolate different points:
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719152734279.png" alt="image-20250719152734279" style="zoom:50%;" />
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719152750819.png" alt="image-20250719152750819" style="zoom:50%;" />
+
+  We can piece together many Bézier curves to interpolate lots of points (because High-degree Bernstein polynomials don’t interpolate well):
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719153052146.png" alt="image-20250719153052146" style="zoom:50%;" />
+
+  Bézier Patches is Bézier patch is sum of (tensor) products of Bernstein bases:
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719153332361.png" alt="image-20250719153332361" style="zoom:50%;" />
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719153400985.png" alt="image-20250719153400985" style="zoom:50%;" />
+
+  By connecting Bézier curves, can connect Bézier patches  to get a surface:
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719153622651.png" alt="image-20250719153622651" style="zoom:50%;" />
+
+  > Basically, it is weight-average points (2D, 3D)
+
+- Rational B-Splines
+
+  Bézier can’t exactly represent conics—not even the circle!
+
+  Solution: interpolate in homogeneous coordinates, then  project back to the plane:
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719154824673.png" alt="image-20250719154824673" style="zoom:50%;" />
+
+- NURBS:  (N)on-(U)niform (R)ational (B)-(S)pline
+
+  - knots at arbitrary locations (non-uniform) 
+  - expressed in homogeneous coordinates (rational) 
+  - piecewise polynomial curve (B-Spline) 
+
+  w is homogeneous coordinate, controlling "strength" of a vertex
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719154946255.png" alt="image-20250719154946255" style="zoom:50%;" />
+
+  We can use tensor product to the NURBS curve
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719155033869.png" alt="image-20250719155033869" style="zoom:50%;" />
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719155041179.png" alt="image-20250719155041179" style="zoom:50%;" />
+
+- Subdivision:
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719155241193.png" alt="image-20250719155241193" style="zoom:50%;" />
+
+
+### 3.1.3 Summary
+
+Some representations work better  than others—depends on the task!
+
+## **3.2 Meshes and Manifolds**
+
+### 3.2.1 Manifold Assumption
+
+If you zoom in far enough, can draw a regular coordinate grid. (Very rough definition)
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719162325950.png" alt="image-20250719162325950" style="zoom:50%;" />
+
+This is not manifold:
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719162427742.png" alt="image-20250719162427742" style="zoom:50%;" />
+
+Which of shapes are manifold?
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719162458536.png" alt="image-20250719162458536" style="zoom:50%;" />
+
+Or, we can say: **A manifold polygon mesh has fans, not fins**
+
+1. Every edge is contained in only two polygons (no “fins”)  
+2. The polygons containing each vertex make a single “fan”
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719162549472.png" alt="image-20250719162549472" style="zoom:50%;" />
+
+### 3.2.2 Why Do We Need Manifold?
+
+1.  To make some assumptions about our geometry to keep data  structures/algorithms simple and efficient 
+2. In many common cases, doesn’t fundamentally limit what  we can do with geometry
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719162726353.png" alt="image-20250719162726353" style="zoom:50%;" />
+
+### 3.2.3 Halfedge Data Structure
+
+*There are lots data structure can be used to store meshes, here we only talk about halfedge.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719162914367.png" alt="image-20250719162914367" style="zoom:80%;" />
+
+Halfedge makes mesh traversal easy:
+
+- Visit all vertices of a face
+
+  ```c++
+  Halfedge* h = f->halfedge;
+  do {
+      h = h->next;
+      h->vertex...
+  } while (h != f-> halfedge);
+  ```
+
+- Visit all neighbors of a vertex:
+
+  ```c++
+  Halfedge* h = v->halfedge;
+  do {
+      h = h->twin->next;
+  } while (h != v-> halfedge);
+  ```
+
+- …
+
+**Halfedge connectivity is always manifold:**
+
+- Keep following `next`, and you’ll get faces.
+- Keep following `twin` and you’ll get edges.
+- Keep following `next->twin` and you’ll get vertices.
+
+### 3.2.4 Halfedge Meshes Edition
+
+- Edge Flip
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719163515986.png" alt="image-20250719163515986" style="zoom:50%;" />
+
+- Edge Split
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719163539056.png" alt="image-20250719163539056" style="zoom:50%;" />
+
+- Edge Collapse
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719163601355.png" alt="image-20250719163601355" style="zoom:50%;" />
+
+- More…
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719163733181.png" alt="image-20250719163733181" style="zoom:70%;" />
+
+## **3.3 Digital Geometry Processing**
+
+### 3.3.1 Remeshing as Resampling
+
+- Undersampling destroys features 
+- Oversampling bad for performance
+
+We need "good sampling"—"good" mesh. We need good approximation of original shape! Keep only elements that contribute information about shape. Add additional information where, e.g., curvature is large.
+
+Vertices exactly on the surface doesn't mean it is a good approximation.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719164456367.png" alt="image-20250719164456367" style="zoom:50%;" />
+
+(Some attributes, like normal is not good).
+
+- One rule of thumb: triangle shape—**Delaunay**
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719164710338.png" alt="image-20250719164710338" style="zoom:50%;" />
+
+  For any triangle in the decomposition, the interior of its circumcircle does not contain any other point.
+
+- Another rule of thumb: regular vertex degree: Degree 6 for triangle mesh, 4 for quad mesh
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719165526606.png" alt="image-20250719165526606" style="zoom:50%;" />
+
+### 3.3.2 Upsampling via (Catmull-Clark/Loop) Subdivision
+
+There are lots of ways to do the subdivision.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719165641337.png" alt="image-2025071916564137" style="zoom:70%;" />
+
+- **Catmull-Clark subdivision**
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719170216363.png" alt="image-20250719170216363" style="zoom:60%;" />
+
+  > For more detailed tutorial: [Catmull-Clark Subdivision: The Basics – CodeItNow](https://www.rorydriscoll.com/2008/08/01/catmull-clark-subdivision-the-basics/)
+
+- **Loop Subdivision**
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719170417585.png" alt="image-20250719170417585" style="zoom:50%;" />
+
+  We can use edge operations to complete the subdivision:
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719170455161.png" alt="image-20250719170455161" style="zoom:50%;" />
+
+  (Don’t forget to update vertex positions!)
+
+### 3.3.3 Simplification via Edge Collapse
+
+Basically, we assign each edge a cost, collapse the edge with least cost, and repeat until we reach the target.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719170542776.png" alt="image-20250719170542776" style="zoom:50%;" />
+
+And we use **Quadric Error Metrics** to determine edge's cost.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719183316611.png" alt="image-20250719183316611" style="zoom:60%;" />
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719183516959.png" alt="image-20250719183516959" style="zoom:50%;" />
+
+> For a derivation, see [Scotty3D_Benky/assignments/A2/simplify.md at main · tbbbk/Scotty3D_Benky](https://github.com/tbbbk/Scotty3D_Benky/blob/main/assignments/A2/simplify.md)
+
+### 3.3.4 Isotropic Remeshing Algorithm
+
+How to make triangles uniform shape & size?
+
+Repeat four steps: 
+
+- Split any edge over 4/3rds mean edge length
+- Collapse any edge less than 4/5ths mean edge length
+- Flip edges to improve vertex degree 
+- Center vertices tangentially
+
+## **3.5 Geometric Queries**
+
+### 3.5.1 Ray Equation
+
+$$
+r(t)=\mathbf{o}+t\mathbf{d}
+$$
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719190555553.png" alt="image-20250719190555553" style="zoom:50%;" />
+
+### 3.5.2 Intersection
+
+For **implicit surface intersection**, $f(r(t))=0$ and solve for $t$.
+
+For **explicit surface intersection** (e.g. triangle), things become much harder and we do care about **performance**!
+
+We will introduce Spatial Acceleration Data Structures!
+
+## **3.6 Spatial Acceleration Data Structures**
+
+What we care about most is the ray-triangle intersection!
+
+### 3.6.1 Affine Map for Triangle
+
+We can parameterize triangle given by vertices $\mathbf{p}_0,\mathbf{p}_1,\mathbf{p}_2$ using  barycentric coordinates:
+$$
+f(u,v)=(1-u-v)\mathbf{p}_0+u\mathbf{p}_1+v\mathbf{p}_2\\
+f(u,v)=\mathbf{p}_0+u(\mathbf{p}_1-\mathbf{p}_0)+v(\mathbf{p}_2-\mathbf{p}_0)\\
+$$
+Now it's like: 
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719191531371.png" alt="image-20250719191531371" style="zoom:50%;" />
+
+So now the ray-triangle intersection is like:
+$$
+\mathbf{p}_0+u(\mathbf{p}_1-\mathbf{p}_0)+v(\mathbf{p}_2-\mathbf{p}_0)=\mathbf{o}+t\mathbf{d}\\
+
+   \begin{bmatrix}
+     \mathbf{p}_1 - \mathbf{p}_0 &
+     \mathbf{p}_2 - \mathbf{p}_0 &
+     -\mathbf{d}
+   \end{bmatrix}
+   \begin{bmatrix}u\\v\\t\end{bmatrix}
+   = \mathbf{o} - \mathbf{p}_0\\
+   M \begin{bmatrix}u\\v\\t\end{bmatrix}
+   = \mathbf{o} - \mathbf{p}_0
+   \quad\Longrightarrow\quad
+   \begin{bmatrix}u\\v\\t\end{bmatrix}
+   = M^{-1}\,(\mathbf{o}-\mathbf{p}_0)\\
+    u \ge 0,\quad v \ge 0,\quad u + v \le 1,\quad t \ge 0
+$$
+We only need to solve for $u,v,\text{ and }t$.
+
+### 3.6.2 Bounding Box
+
+We can pre-compute a bounding box around all primitives. If a ray intersect with a bounding box, then we test each primitives within this bounding box to avoid meaningless tradeoff.
+
+Then use calculate the ray-axis-aligned box intersection:
+
+The uniform equation is:
+$$
+\mathbf{N}^T(\mathbf{o}+t\mathbf{d})=c
+$$
+Solve for the $t$, e.g. intersection with $x_0$
+$$
+\mathbf{N}^T=[1\space0\space0]^T\text{ (we only care about x-axis)}\\
+c=x_0\\
+t=\frac{x_0-\mathbf{o}_{\mathbf{x}}}{\mathbf{d}_{\mathbf{x}}}
+$$
+More examples:
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719193429378.png" alt="image-20250719193429378" style="zoom:50%;" />
+
+### 3.6.3 Bounding Volume Hierarchy (BVH)
+
+> BVH implementation assignment is really the pain in the ass…
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719194340940.png" alt="image-20250719194340940" style="zoom:70%;" />
+
+How do we build the better BVH? We need a better partition.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719194912528.png" alt="image-20250719194912528" style="zoom:50%;" />
+
+A good partitioning minimizes the <u>cost</u> of finding the closest  intersection of a ray with primitives in the node.
+$$
+C =C_{trav} +p_AN_AC_{isect} +p_BN_BC_{isect}
+$$
+
+
+- $C_{trav}$ is the cost of traversing an interior node (e.g., bounding box test)
+- $C_A$ and $C_B$ are the costs of intersection with the resultant child subtrees 
+-  $p_A$ and  $p_B$ are the probability a ray intersects the bbox of the child nodes A and B
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719195228703.png" alt="image-20250719195228703" style="zoom:50%;" />
+$$
+P(hitA|hitB)=\frac{S_A}{S_B}
+$$
+The pipeline about building BVH:
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719195332186.png" alt="image-20250719195332186" style="zoom:66%;" />
+
+Beside BVH, there are also lots data structure to accelerate:
+
+- K-D tree
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719195642869.png" alt="image-20250719195642869" style="zoom:50%;" />
+
+- Uniform grid
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719195654373.png" alt="image-20250719195654373" style="zoom:50%;" />
+
+- Heuristic: Choose number of voxels ~ total number of primitives
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719195705443.png" alt="image-20250719195705443" style="zoom:50%;" />
+
+- Quad-tree / octree
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719195733076.png" alt="image-20250719195733076" style="zoom:50%;" />
+
+# 4. Ray Tracing
+
+## **4.1 Color**
+
+> For the color section, I literally omit a lot of contents… Because I didn't listen to the color lecture very carefully orz
+
+Light is oscillating electric & magnetic field.
+
+ KEY IDEA: frequency determines color of light
+
+### 4.1.1 Intensity or Absorption
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719201526219.png" alt="image-20250719201526219" style="zoom:50%;" />
+
+### 4.1.2 Emission and Reflection
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719201620893.png" alt="image-20250719201620893" style="zoom:50%;" />
+
+### 4.1.3 Color Models
+
+- RGB<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719201718777.png" alt="image-20250719201718777" style="zoom:50%;" />
+- CMYK<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719201730038.png" alt="image-20250719201730038" style="zoom:50%;" />
+- HSV<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719201749706.png" alt="image-20250719201749706" style="zoom:33%;" />
+- SML
+- XYZ
+- …
+
+### 4.1.4  Y’CbCr
+
+- Y’ = luma: perceived luminance (same as L* in CIELAB)  
+- Cb = blue-yellow deviation from gray
+- Cr = red-cyan deviation from gray
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719201947336.png" alt="image-20250719201947336" style="zoom:50%;" />
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250719201936232.png" alt="image-20250719201936232" style="zoom:50%;" />
+
+## **4.2 Radiometry**
+
+### 4.2.1 Photon
+
+Imagine every photon is a little **rubber ball** hitting the scene.
+
+### 4.2.2 Radiant Energy $Q$
+
+This it "the number of hits". Energy for **single** photon:
+$$
+Q=\frac{hc}{\lambda}\\
+h\approx6.626\times 10^{-34}J·s\\
+c\approx3.00\times 10^8m/s\\
+\lambda\approx390-700\times 10^{-3}m\text{ (visible)}\\
+\text{Unit: }\frac{(J\times s)(m/s)}{m}=J
+$$
+where: $h$ is Planck's constant, $c$ is speed of light, and $\lambda$ is wavelength (color!).
+
+### 4.2.3 Radiant Flux $\Phi$ (Power) 
+
+Energy per unit time (Watts) received by the sensor (or emitted by the light)
+$$
+\Phi = \lim_{\Delta t \to 0} \frac{\Delta Q}{\Delta t} = \frac{dQ}{dt}\\
+Q = \int_{t_0}^{t_1} \Phi(t) \, \mathrm{d}t
+$$
+
+### 4.2.4 Irradiance $E$
+
+Area density of radiant flux, given a senor of with area $A$, the average flux is :
+$$
+\frac{\Phi}{A}
+$$
+Irradiance ($E$) is given by taking limit of area at a single point on the sensor:
+$$
+E(p) = \lim_{\Delta \to 0} \frac{\Delta \Phi(p)}{\Delta A} = \frac{\mathrm{d}\Phi(p)}{\mathrm{d}A} \quad \left[ \frac{\mathrm{W}}{\mathrm{m}^2} \right]
+$$
+
+### 4.2.5 Lambert's Law
+
+| <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720153803749.png" alt="image-20250720153803749" style="zoom:50%;" /> | <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720153821568.png" alt="image-20250720153821568" style="zoom:50%;" /> |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| $E=\frac{\Phi}{A}$                                           | $E=\frac{E}{A'}=\frac{\Phi cos\theta}{A}$                    |
+
+### 4.2.6 Irradiance Falloff with Distance
+
+Given flux $\Phi$:
+$$
+\begin{align}
+E_1 &= \frac{\Phi}{4\pi r_1^2} \to \Phi = 4\pi r_1^2 E_1 \\
+E_2 &= \frac{\Phi}{4\pi r_2^2} \to \Phi = 4\pi r_2^2 E_2 \\
+\frac{E_2}{E_1} &= \frac{r_1^2}{r_2^2} = \left( \frac{r_1}{r_2} \right)^2
+\end{align}
+$$
+Since same amount of energy is distributed  over larger and larger spheres, has to get darker  quadratically with distance.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720154233970.png" alt="image-20250720154233970" style="zoom:50%;" />
+
+### 4.2.7 Solid Angles
+
+| Radians                                                      | Steradians                                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720154336701.png" alt="image-20250720154336701" style="zoom:50%;" /> | <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720154344424.png" alt="image-20250720154344424" style="zoom:50%;" /> |
+| $\theta=\frac{l}{r}$                                         | $\Omega=\frac{A}{r^2}$                                       |
+
+Differential solid angle:
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720154646024.png" alt="image-20250720154646024" style="zoom:50%;" />
+$$
+\begin{align}
+\mathrm{d}A&=(r\mathrm{d}\theta)(r\mathrm{sin}\theta\mathrm{d}\phi)\\
+ & =r^2\mathrm{sin}\theta\mathrm{d}\theta\mathrm{d}\phi\\
+ \mathrm{d}\omega&=\frac{\mathrm{d}A}{r^2}=\mathrm{sin}\theta\mathrm{d}\theta\mathrm{d}\phi\\
+ 
+\Omega &= \int_{S^2} \mathrm{d}\omega \\
+&= \int_{0}^{2\pi} \int_{0}^{\pi} \sin\theta \, \mathrm{d}\theta \, \mathrm{d}\phi \\
+&= 4\pi
+\end{align}
+$$
+
+### 4.2.8 Radiance $L$
+
+Radiance is the solid angle density of irradiance:
+$$
+L(\mathrm{p}, \omega) = \lim_{\Delta \to 0} \frac{\Delta E_\omega(\mathrm{p})}{\Delta \omega} = \frac{\mathrm{d}E_\omega(\mathrm{p})}{\mathrm{d}\omega} \quad \left[ \frac{\mathrm{W}}{\mathrm{m}^2 \, \mathrm{sr}} \right]
+$$
+ where $E_\omega$ denotes that the differential surface area is  oriented to face in the direction $\omega$!
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720160237131.png" alt="image-20250720160237131" style="zoom:50%;" />
+
+ In other words, radiance is energy along a ray defined by  origin point p and direction $\omega$!
+
+Energy per unit time per unit area per unit solid angle…!
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720160824013.png" alt="image-20250720160824013" style="zoom:50%;" />
+
+**Surface radiance**: 
+$$
+L(\mathrm{p}, \omega) = \frac{\mathrm{d}E(\mathrm{p})}{\mathrm{d}\omega \cos\theta} = \frac{\mathrm{d}^2 \Phi(\mathrm{p})}{\mathrm{d}A \, \mathrm{d}\omega \cos\theta}
+$$
+Reminder: Often need to distinguish between incident radiance and  exitant radiance functions at a point on a surface. In general: 
+$$
+L_i(\mathbf{p}, \omega)\ne L_o(\mathbf{p}\omega)
+$$
+
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720161616080.png" alt="image-20250720161616080" style="zoom:50%;" />
+
+
+
+### 4.2.9 Spectral Radiance
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720161451051.png" alt="image-20250720161451051" style="zoom:50%;" />
+
+Now, the radiance is radiant energy per unit time per unit area per unit solid angle. If we wanna get the **COLOR**, we need to add a "<u>per unit wavelength</u>"
+
+### 4.2.10 Ambient Occlusion
+
+ Assume spherical (vs. hemispherical) light source, “**at infinity**”. Irradiance is now **rotation, translation invariant**. Can pre-compute, “bake” into texture to enhance shading
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720161832092.png" alt="image-20250720161832092" style="zoom:50%;" />
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720161840990.png" alt="image-20250720161840990" style="zoom:50%;" />
+
+### 4.2.11 Radiant Intensity $I$
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720162659268.png" alt="image-20250720162659268" style="zoom:50%;" />
+
+Power per solid angle emanating from a point source.
+$$
+I(\omega) = \frac{\mathrm{d}\Phi}{\mathrm{d}\omega} \quad \left[ \frac{\mathrm{W}}{\mathrm{sr}} \right]
+$$
+
+
+## **4.3 The Rendering Equation**
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165136981.png" alt="image-20250720165136981" style="zoom:70%;" />
+
+### 4.3.1 Recursive Raytracing
+
+Basic strategy: recursively evaluate rendering equation!
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165211245.png" alt="image-20250720165211245" style="zoom:50%;" />
+
+Renderer measures **radiance** along a ray:
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165250920.png" alt="image-20250720165250920" style="zoom:50%;" />
+
+### 4.3.2 Reflection
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165404977.png" alt="image-20250720165404977" style="zoom:67%;" />
+
+When the ray bounce in scene, how does the reflection of light affect the outgoing radiance?
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165422869.png" alt="image-20250720165422869" style="zoom:50%;" />
+
+What we are talking about is the scatter function in the rendering equation. Choice of reflection function determines surface appearance.
+
+Some basic reflection functions:
+
+| Reflection                                                   | Examples                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Ideal specular: Perfect mirror                               | <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165759154.png" alt="image-20250720165759154" style="zoom:50%;" /><img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165806019.png" alt="image-20250720165806019" style="zoom:50%;" /> |
+| Ideal diffuse: Uniform reflection in all directions          | <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165811359.png" alt="image-20250720165811359" style="zoom:50%;" /><img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165817245.png" alt="image-20250720165817245" style="zoom:50%;" /> |
+| Glossy specular: Majority of light distributed in  reflection direction | <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165824559.png" alt="image-20250720165824559" style="zoom:50%;" /><img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165832597.png" alt="image-20250720165832597" style="zoom:50%;" /> |
+| Retro-reflective: Reflects light back toward source          | <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165838997.png" alt="image-20250720165838997" style="zoom:50%;" /><img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720165847571.png" alt="image-20250720165847571" style="zoom:50%;" /> |
+
+### 4.3.3 Models of Scattering
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720170704604.png" alt="image-20250720170704604" style="zoom:80%;" />
+
+What goes in must come out! (Total energy must be conserved) 
+
+### 4.3.4 BRDF (Bidirectional Reflectance Distribution Function)
+
+It encodes behavior of light that “bounces off” surface and calculate, when given incoming direction $ω_i$, how much light gets scattered in any given outgoing direction $ω_o$.
+$$
+\begin{gather}
+f_r(\omega_i \to \omega_o) \geq 0 \\
+\int_{\mathcal{H}^2} f_r(\omega_i \to \omega_o) \, \cos\theta \, d\omega_i \leq 1\\
+\text{the sum ≤1 instead of =1 because the surface may absorb the energy }\\
+\text{and convert it into heat or something.} \\
+f_r(\omega_i \to \omega_o) = f_r(\omega_o \to \omega_i)
+\end{gather}
+$$
+**Radiometric description of BRDF**:For a given change in the incident irradiance, how much does the exitant radiance change?
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720172507596.png" alt="image-20250720172507596" style="zoom:50%;" />
+$$
+f_r(\omega_i \to \omega_o) = \frac{\mathrm{d}L_o(\omega_o)}{\mathrm{d}E_i(\omega_i)} = \frac{\mathrm{d}L_o(\omega_o)}{\mathrm{d}L_i(\omega_i) \cos\theta_i} \quad \left[ \frac{1}{\mathrm{sr}} \right]
+$$
+**Common BRDF:**
+
+- **Lambertian reflection** $f_r = \frac{\rho}{\pi}$
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720172946409.png" alt="image-20250720172946409" style="zoom:50%;" />
+
+- **Specular reflection** $f_r(\theta_i, \phi_i; \theta_o, \phi_o) = \frac{\delta(\cos\theta_i - \cos\theta_o) \delta(\phi_i - \phi_o \pm \pi)}{\cos\theta_i}$
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720173012500.png" alt="image-20250720173012500" style="zoom:50%;" />
+
+- **Refraction**:
+
+  - Snell's Law $\eta_i \sin\theta_i = \eta_t \sin\theta_t$
+
+    <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720173048433.png" alt="image-20250720173048433" style="zoom:50%;" />
+
+  - Law of refraction: solve the $\mathbf{cos} \theta_t$ in the Snell's Law
+
+  - Optical manhole: Only small “cone” visible, due to total internal reflection (TIR) (When light is moving from a more optically dense  medium to a less optically dense medium, light incident on boundary from large enough angle  will not exit medium.)
+
+    <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720173310356.png" alt="image-20250720173310356" style="zoom:50%;" />
+
+- **Fresnel reflection**: Many real materials:  reflectance increases w/  viewing angle
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720173356732.png" alt="image-20250720173356732" style="zoom:50%;" />
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720173341227.png" alt="image-20250720173341227" style="zoom:50%;" />
+
+- Anisotropic reflection: Reflection depends on azimuthal angle $\phi$
+
+  <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720173603656.png" alt="image-20250720173603656" style="zoom:50%;" />
+
+### 4.3.5 Subsurface scattering
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720173654307.png" alt="image-20250720173654307" style="zoom:67%;" />
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720173706572.png" alt="image-20250720173706572" style="zoom:50%;" />
+
+**BSSRDF**:
+$$
+L(x_o, \omega_o) = \int_{A} \int_{H^2} S(x_i, \omega_i, x_o, \omega_o) \, L_i(x_i, \omega_i) \, \cos\theta_i \, \mathrm{d}\omega_i \, \mathrm{d}A
+$$
+
+| ![image-20250720173822059](D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720173822059.png) | ![image-20250720173827694](D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720173827694.png) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+
+# 5. Optimization for Ray Tracing
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720174045210.png" alt="image-20250720174045210" style="zoom:50%;" />
+$$
+\color{red}{\text{How can we possibly evaluate this integral?}}
+$$
+
+## 5.1 Numerical Integration
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720174218971.png" alt="image-20250720174218971" style="zoom:50%;" />
+
+Basic idea: 
+
+- integral is “area under curve” 
+- sample the function at many points 
+- integral is approximated as  weighted sum
+
+### 5.1.1 Gauss Quadrature
+
+For any polynomial of degree n, we can always obtain the  exact integral by sampling at a special set of n points and  taking a special weighted combination.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720175349086.png" alt="image-20250720175349086" style="zoom:50%;" />
+
+Weighted combination of sample points.
+
+Key idea so far: To approximate an integral, we need 
+
+1. **quadrature points**
+2. **weights for each point**
+
+$$
+\int_{a}^{b} f(x) \, dx \approx \sum_{i=1}^{n} w_i f(x_i)
+$$
+
+### 5.1.2 Trapezoid rule
+
+ Approximate integral of $f(x)$ by pretending function is piecewise affine.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720203645901.png" alt="image-20250720203645901" style="zoom:67%;" />
+$$
+\begin{align}
+h &= \frac{b - a}{n - 1} \\
+\int_{a}^{b} f(x) \, dx &= h \left( \sum_{i=1}^{n-1} f(x_i) + \frac{1}{2} \left( f(x_0) + f(x_n) \right) \right)
+\end{align}
+$$
+Work: $O(n)$
+
+Error: $O(h^2)=O(\frac{1}{n^2})$
+
+How about 2D?
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720203936134.png" alt="image-20250720203936134" style="zoom:60%;" />
+
+Error is still O(h^2), but work now is $O(n^2)$ (n x n set of measurements).
+
+How about k dimensions?
+
+let $N=n^k$, then the error is $O(h^2)=O(\frac{1}{n^2})=O(\frac{1}{N^{\frac{2}{k}}})$
+
+### 5.1.3 Curse of Dimensionality for Trapezoid Rule
+
+How much does it cost to apply the trapezoid  rule as we go up in dimension? 
+
+- 1D: $O(n) $
+- 2D: $O(n^2)$
+- … 
+- kD: $O(n^k)$
+
+For many problems in graphics (like  rendering), k is very, very big (e.g., tens or  hundreds or thousands). Applying trapezoid rule does not scale!
+
+### 5.1.4 Sampling from Discrete Probability  Distributions
+
+To randomly select an event, select $x_i$ if:
+$$
+P_{i-1} < \xi \leq P_i
+$$
+Here $\xi$ is a uniform random variable $\in [0,1)$
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720205359000.png" alt="image-20250720205359000" style="zoom:67%;" />
+
+### 5.1.5 Sampling Continuous Random Variables  using the Inversion Method
+
+Cumulative probability distribution function $P(x)=Pr(X<x)$, get the inverse function $P^{-1}(x)$.  $\xi$ is a uniform random variable $\in [0,1)$, solve for $x=P^{-1}(\xi)$.
+
+We must know integral of $p(x)$ (to get $P(x)$), and also the inverse function
+
+> First try: uniformly sampling unit circle
+>
+> <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720212617356.png" alt="image-20250720212617356" style="zoom:50%;" />
+>
+> <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720212632425.png" alt="image-20250720212632425" style="zoom:50%;" />
+>
+> <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720212645417.png" alt="image-20250720212645417" style="zoom:50%;" />
+>
+> *For the second line:![image-20250720212923119](D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720212923119.png)
+>
+> <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720213015116.png" alt="image-20250720213015116" style="zoom:67%;" />
+
+### 5.1.6 Rejection Sampling
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720213112564.png" alt="image-20250720213112564" style="zoom:67%;" />
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720213143070.png" alt="image-20250720213143070" style="zoom:67%;" />
 
