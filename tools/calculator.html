@@ -16,98 +16,17 @@
       align-items: flex-start;
       min-height: 100vh;
       background-color: #f5f5f5;
-      padding: 20px;
+      padding: 20px 0;
       box-sizing: border-box;
     }
     
-    .main-wrapper {
-      display: flex;
-      gap: 20px;
-      max-width: 1200px;
-      width: 100%;
-    }
-    
     .container {
-      flex: 1;
       max-width: 800px;
       padding: 30px;
       text-align: center;
       background-color: white;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    
-    .sidebar {
-      width: 300px;
-      padding: 20px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      height: fit-content;
-      position: sticky;
-      top: 20px;
-    }
-    
-    .sidebar h3 {
-      margin-top: 0;
-      color: #007bff;
-      text-align: center;
-    }
-    
-    .sidebar .input-group {
-      margin: 15px 0;
-    }
-    
-    .sidebar input {
-      width: 100%;
-      padding: 8px;
-      font-size: 14px;
-      border: 2px solid #ddd;
-      border-radius: 5px;
-      box-sizing: border-box;
-      margin-bottom: 10px;
-    }
-    
-    .sidebar button {
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-bottom: 10px;
-    }
-    
-    .sidebar button:hover {
-      background-color: #218838;
-    }
-    
-    .sidebar #quickResults {
-      margin-top: 15px;
-      padding: 10px;
-      background-color: #f8f9fa;
-      border-radius: 5px;
-      border-left: 4px solid #28a745;
-      font-size: 14px;
-    }
-    
-    .sidebar #quickResults h4 {
-      margin-top: 0;
-      color: #28a745;
-      font-size: 16px;
-    }
-    
-    .sidebar #quickResults p {
-      margin: 8px 0;
-      line-height: 1.4;
-    }
-    
-    .sidebar-divider {
-      height: 1px;
-      background-color: #dee2e6;
-      margin: 20px 0;
     }
     
     .input-group {
@@ -340,46 +259,82 @@
     .clear-history-btn:hover {
       background-color: #c82333;
     }
+
+    .input-mode-selector {
+      margin-bottom: 20px;
+    }
+
+    .input-mode-selector button {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border: 2px solid #007bff;
+      background-color: white;
+      color: #007bff;
+      border-radius: 5px;
+      margin: 0 5px;
+    }
+
+    .input-mode-selector button.active {
+      background-color: #007bff;
+      color: white;
+    }
   </style>
 </head>
 <body>
-  <div class="main-wrapper">
-    <div class="container">
-      <h1>体积计算器</h1>
-      <div style="text-align: center; margin: 20px 0;">
-        <img src="../assets/images/shu.gif" alt="装饰图片" style="max-width: 150px; height: auto; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-      </div>
-    <div id="items-wrapper">
-      <div class="item-container">
-        <div class="item-header">
-          <h4>货物 1</h4>
-        </div>
-        <div class="input-row">
-          <div class="input-item">
-            <label>长度 (cm):</label>
-            <input type="number" class="length" placeholder="输入长度" step="0.01">
-          </div>
-          <div class="input-item">
-            <label>宽度 (cm):</label>
-            <input type="number" class="width" placeholder="输入宽度" step="0.01">
-          </div>
-          <div class="input-item">
-            <label>高度 (cm):</label>
-            <input type="number" class="height" placeholder="输入高度" step="0.01">
-          </div>
-          <div class="input-item">
-            <label>单位体积货物数量:</label>
-            <input type="number" class="unitQuantity" placeholder="输入单位体积货物数量" step="1">
-          </div>
-          <div class="input-item">
-            <label>实际货物数量:</label>
-            <input type="number" class="actualQuantity" placeholder="输入实际货物数量" step="1">
-          </div>
-        </div>
-      </div>
+  <div class="container">
+    <h1>体积计算器</h1>
+    <div style="text-align: center; margin: 20px 0;">
+      <img src="../assets/images/shu.gif" alt="装饰图片" style="max-width: 150px; height: auto; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
     </div>
-    <button id="add-item-btn" onclick="addItem()">添加其他货物</button>
-    <button onclick="calculateVolume()">计算总体积</button>
+
+    <div class="input-mode-selector">
+      <button id="dim-btn" class="active" onclick="switchInputMode('dim')">按长宽高计算</button>
+      <button id="vol-btn" onclick="switchInputMode('vol')">直接输入体积</button>
+    </div>
+
+    <div id="dim-input-section">
+      <div id="items-wrapper">
+        <div class="item-container">
+          <div class="item-header">
+            <h4>货物 1</h4>
+          </div>
+          <div class="input-row">
+            <div class="input-item">
+              <label>长度 (cm):</label>
+              <input type="number" class="length" placeholder="输入长度" step="0.01">
+            </div>
+            <div class="input-item">
+              <label>宽度 (cm):</label>
+              <input type="number" class="width" placeholder="输入宽度" step="0.01">
+            </div>
+            <div class="input-item">
+              <label>高度 (cm):</label>
+              <input type="number" class="height" placeholder="输入高度" step="0.01">
+            </div>
+            <div class="input-item">
+              <label>单位体积货物数量:</label>
+              <input type="number" class="unitQuantity" placeholder="输入单位体积货物数量" step="1">
+            </div>
+            <div class="input-item">
+              <label>实际货物数量:</label>
+              <input type="number" class="actualQuantity" placeholder="输入实际货物数量" step="1">
+            </div>
+          </div>
+        </div>
+      </div>
+      <button id="add-item-btn" onclick="addItem()">添加其他货物</button>
+      <button onclick="calculateVolume()">计算总体积</button>
+    </div>
+
+    <div id="vol-input-section" style="display: none;">
+      <div class="input-group">
+        <label>合计实际体积 (m³):</label>
+        <input type="number" id="directVolume" placeholder="输入总体积" step="0.000001">
+      </div>
+      <button onclick="calculateFromVolume()">开始计算</button>
+    </div>
+
     <p><b>合计实际体积：<span id="result"></span> m³</b></p>
     <div id="boxSuggestions"></div>
     
@@ -413,34 +368,6 @@
       <ul id="history"></ul>
       <p id="noHistory" style="text-align: center; color: #666; font-style: italic;">暂无计算历史</p>
     </div>
-  </div>
-  
-  <!-- 侧边栏 - 快速箱子推荐 -->
-  <div class="sidebar">
-    <h3>快速箱子推荐</h3>
-    
-    <div class="input-group">
-      <label>方式一：直接输入体积 (m³)</label>
-      <input type="number" id="quickVolume" placeholder="输入体积" step="0.000001">
-      <button onclick="quickRecommendByVolume()">推荐箱子</button>
-    </div>
-    
-    <div class="sidebar-divider"></div>
-    
-    <div class="input-group">
-      <label>方式二：输入长宽高 (cm)</label>
-      <input type="number" id="quickLength" placeholder="长度" step="0.01">
-      <input type="number" id="quickWidth" placeholder="宽度" step="0.01">
-      <input type="number" id="quickHeight" placeholder="高度" step="0.01">
-      <button onclick="quickRecommendByDimensions()">推荐箱子</button>
-    </div>
-    
-    <div id="quickResults" style="display: none;">
-      <h4>推荐结果</h4>
-      <div id="quickResultsContent"></div>
-    </div>
-  </div>
-  
   </div>
 
   <script>
@@ -947,13 +874,22 @@
 
             // 1. Calculate total adjusted volume for the plan
             let totalAdjustedVolume = 0;
+            let totalRoundedWeight = 0;
+
             if (plan.type === 'single') {
                 totalAdjustedVolume = getAdjustedVolume(plan.box);
+                totalRoundedWeight = Math.ceil(totalAdjustedVolume / 0.01); // Example for one company, will be recalculated
             } else if (plan.type === 'split') {
-                totalAdjustedVolume += getAdjustedVolume(plan.largeBox) * plan.largeBoxCount;
-                if (plan.remainderBox) {
-                    totalAdjustedVolume += getAdjustedVolume(plan.remainderBox);
-                }
+                let largeBoxAdjustedVolume = getAdjustedVolume(plan.largeBox);
+                let remainderBoxAdjustedVolume = getAdjustedVolume(plan.remainderBox);
+                
+                totalAdjustedVolume = (largeBoxAdjustedVolume * plan.largeBoxCount) + remainderBoxAdjustedVolume;
+                
+                // This is a simplified view, actual weight calculation is per company
+                let largeBoxRoundedWeight = Math.ceil(largeBoxAdjustedVolume / 0.01);
+                let remainderBoxRoundedWeight = Math.ceil(remainderBoxAdjustedVolume / 0.01);
+                totalRoundedWeight = (largeBoxRoundedWeight * plan.largeBoxCount) + remainderBoxRoundedWeight;
+
             } else {
                 // 处理没有类型字段的方案（向后兼容）
                 if (plan.box) {
@@ -963,18 +899,16 @@
             html += `<p><b>总外箱体积:</b> ${totalAdjustedVolume.toFixed(6)} m³</p><hr>`;
 
             // 2. Calculate cost for each company
-            html += calculateCompanyCost("韵达", rates["韵达"], totalAdjustedVolume);
-            html += calculateCompanyCost("百世", rates["百世"], totalAdjustedVolume);
-            html += calculateCompanyCost("顺心捷达", rates["顺心捷达"], totalAdjustedVolume);
+            html += calculateCompanyCost("韵达", rates["韵达"], plan);
+            html += calculateCompanyCost("百世", rates["百世"], plan);
+            html += calculateCompanyCost("顺心捷达", rates["顺心捷达"], plan);
 
             html += `</div>`;
         });
 
         resultsDiv.innerHTML = html;
         resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    function getAdjustedVolume(box) {
+    }    function getAdjustedVolume(box) {
         if (!box) return 0;
         const adjustedLength = (box.dimensions.l + 3) / 100;
         const adjustedWidth = (box.dimensions.w + 3) / 100;
@@ -982,7 +916,7 @@
         return adjustedLength * adjustedWidth * adjustedHeight;
     }
 
-    function calculateCompanyCost(companyName, companyRates, volume) {
+    function calculateCompanyCost(companyName, companyRates, plan) {
         let costHtml = `<h5 style="color: #17a2b8;">${companyName}</h5>`;
         if (!companyRates || Object.values(companyRates).every(val => val === null)) {
             return costHtml + "<p>此地区不支持</p>";
@@ -991,40 +925,55 @@
         let weight = 0;
         let cost = 0;
         let calculationDetails = "";
+        let totalVolume = 0;
+
+        if (plan.type === 'single') {
+            totalVolume = getAdjustedVolume(plan.box);
+        } else if (plan.type === 'split') {
+            totalVolume += getAdjustedVolume(plan.largeBox) * plan.largeBoxCount;
+            if (plan.remainderBox) {
+                totalVolume += getAdjustedVolume(plan.remainderBox);
+            }
+        } else if (plan.box) { // 向后兼容
+            totalVolume = getAdjustedVolume(plan.box);
+        }
 
         switch (companyName) {
             case "韵达":
-                weight = volume / 0.01;
-                calculationDetails = `<p>计算方式: 体积 / 0.01 (韵达抛比)</p>`;
-                weight = Math.ceil(weight); // 向上取整
-                calculationDetails += `<p>抛重: ${weight} kg (向上取整)</p>`;
+                if (plan.type === 'split') {
+                    let largeBoxWeight = Math.ceil(getAdjustedVolume(plan.largeBox) / 0.01);
+                    let remainderBoxWeight = plan.remainderBox ? Math.ceil(getAdjustedVolume(plan.remainderBox) / 0.01) : 0;
+                    weight = (largeBoxWeight * plan.largeBoxCount) + remainderBoxWeight;
+                    calculationDetails = `<p>计算方式: 各箱体积分别/0.01后向上取整再相加</p>`;
+                } else {
+                    weight = Math.ceil(totalVolume / 0.01);
+                    calculationDetails = `<p>计算方式: 总体积 / 0.01 后向上取整</p>`;
+                }
+                
+                calculationDetails += `<p>抛重: ${weight} kg</p>`;
+
                 if (weight <= 3) {
                     cost = companyRates["3KG"];
                     calculationDetails += `<p>计算价格: ¥${cost} (3KG内一口价)</p>`;
-                    calculationDetails += `<p>最终价格: ¥${cost}</p>`;
                 } else if (weight <= 5 && companyRates["5KG"] !== null) {
                     cost = companyRates["5KG"];
                     calculationDetails += `<p>计算价格: ¥${cost} (5KG内一口价)</p>`;
-                    calculationDetails += `<p>最终价格: ¥${cost}</p>`;
                 } else if (companyRates["5KG"] !== null && companyRates["5上"] !== null) {
-                    // 修正：超过5kg的重量全部按5上价格计算
                     cost = weight * companyRates["5上"];
                     calculationDetails += `<p>计算价格: ¥${cost.toFixed(2)} (${weight}kg × ${companyRates["5上"]})</p>`;
-                    calculationDetails += `<p>最终价格: ¥${cost.toFixed(2)}</p>`;
                 } else {
-                    // 只有3KG价格可用的情况
                     cost = companyRates["3KG"];
                     calculationDetails += `<p>计算价格: ¥${cost} (仅3KG内一口价可用)</p>`;
-                    calculationDetails += `<p>最终价格: ¥${cost}</p>`;
                 }
+                calculationDetails += `<p>最终价格: ¥${cost.toFixed(2)}</p>`;
                 break;
 
             case "百世":
-                if (volume <= 0.4) {
-                    weight = volume / 0.01;
+                if (totalVolume <= 0.4) {
+                    weight = totalVolume / 0.01;
                     calculationDetails = `<p>计算方式: 体积 / 0.01 (因体积 ≤ 0.4m³)</p>`;
-                } else if (volume > 0.4 && volume < 4.99) {
-                    weight = volume / 0.008;
+                } else if (totalVolume > 0.4 && totalVolume < 4.99) {
+                    weight = totalVolume / 0.008;
                     calculationDetails = `<p>计算方式: 体积 / 0.008 (因体积 > 0.4m³)</p>`;
                 } else {
                      return costHtml + "<p>体积超出范围 (≥ 4.99m³)</p>";
@@ -1042,8 +991,8 @@
                 break;
 
             case "顺心捷达":
-                 if (volume < 0.55) {
-                    weight = volume / 0.01;
+                 if (totalVolume < 0.55) {
+                    weight = totalVolume / 0.01;
                     calculationDetails = `<p>计算方式: 体积 / 0.01 (因体积 < 0.55m³)</p>`;
                 } else {
                     return costHtml + "<p>体积超出范围 (≥ 0.55m³)</p>";
@@ -1145,23 +1094,32 @@
       const item = history[index];
       const data = item.data;
       
-      // Reset to a single item view
-      const wrapper = document.getElementById('items-wrapper');
-      wrapper.innerHTML = '';
-      itemCount = 0;
-      addItem(); // Add the first item back
+      if (data.volume) { // Check if it's a direct volume entry
+        switchInputMode('vol');
+        document.getElementById("directVolume").value = data.volume;
+        calculateFromVolume();
+      } else {
+        // Switch to dimensions input mode
+        switchInputMode('dim');
+        
+        // Reset to a single item view
+        const wrapper = document.getElementById('items-wrapper');
+        wrapper.innerHTML = '';
+        itemCount = 0;
+        addItem(); // Add the first item back
 
-      const firstItem = wrapper.querySelector('.item-container');
-      
-      // 填充输入框
-      firstItem.querySelector(".length").value = data.length;
-      firstItem.querySelector(".width").value = data.width;
-      firstItem.querySelector(".height").value = data.height;
-      firstItem.querySelector(".unitQuantity").value = data.unitQuantity;
-      firstItem.querySelector(".actualQuantity").value = data.actualQuantity;
-      
-      // 自动计算
-      calculateVolume();
+        const firstItem = wrapper.querySelector('.item-container');
+        
+        // 填充输入框
+        firstItem.querySelector(".length").value = data.length;
+        firstItem.querySelector(".width").value = data.width;
+        firstItem.querySelector(".height").value = data.height;
+        firstItem.querySelector(".unitQuantity").value = data.unitQuantity;
+        firstItem.querySelector(".actualQuantity").value = data.actualQuantity;
+        
+        // 自动计算
+        calculateVolume();
+      }
       
       // 滚动到顶部
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1219,62 +1177,52 @@
         }
       });
     }
-    
-    // 快速推荐功能
-    function quickRecommendByVolume() {
-      const volume = parseFloat(document.getElementById("quickVolume").value);
-      
-      if (isNaN(volume) || volume <= 0) {
-        document.getElementById("quickResults").style.display = "none";
-        alert("请输入有效的体积值");
+
+    function switchInputMode(mode) {
+      if (mode === 'dim') {
+        document.getElementById('dim-input-section').style.display = 'block';
+        document.getElementById('vol-input-section').style.display = 'none';
+        document.getElementById('dim-btn').classList.add('active');
+        document.getElementById('vol-btn').classList.remove('active');
+      } else {
+        document.getElementById('dim-input-section').style.display = 'none';
+        document.getElementById('vol-input-section').style.display = 'block';
+        document.getElementById('dim-btn').classList.remove('active');
+        document.getElementById('vol-btn').classList.add('active');
+      }
+    }
+
+    function calculateFromVolume() {
+      const totalActualVolume = parseFloat(document.getElementById("directVolume").value);
+      if (isNaN(totalActualVolume) || totalActualVolume <= 0) {
+        document.getElementById("result").textContent = "请输入有效的总体积";
         return;
       }
       
-      displayQuickRecommendation(volume);
-    }
-    
-    function quickRecommendByDimensions() {
-      const length = parseFloat(document.getElementById("quickLength").value);
-      const width = parseFloat(document.getElementById("quickWidth").value);
-      const height = parseFloat(document.getElementById("quickHeight").value);
+      const result = totalActualVolume.toFixed(7);
+      document.getElementById("result").textContent = result;
       
-      if (isNaN(length) || isNaN(width) || isNaN(height) || length <= 0 || width <= 0 || height <= 0) {
-        document.getElementById("quickResults").style.display = "none";
-        alert("请输入有效的长宽高值");
-        return;
+      findSuitableBoxes(totalActualVolume);
+      document.getElementById("shippingSection").style.display = "block";
+      document.getElementById("domesticShippingSection").style.display = "block";
+      document.getElementById("shippingResults").innerHTML = ""; 
+      document.getElementById("domesticShippingResults").innerHTML = "";
+      
+      document.getElementById("result").scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      const timestamp = new Date().toLocaleString('zh-CN');
+      const historyItem = { 
+        calculation: `合计体积: ${result}m³ (直接输入)`, 
+        time: timestamp,
+        data: { volume: totalActualVolume } // Store volume directly
+      };
+      history.unshift(historyItem);
+
+      if (history.length > 20) {
+        history.pop();
       }
-      
-      // 转换为m³
-      const volume = (length / 100) * (width / 100) * (height / 100);
-      displayQuickRecommendation(volume);
-    }
-    
-    function displayQuickRecommendation(targetVolume) {
-      const resultsDiv = document.getElementById("quickResults");
-      const contentDiv = document.getElementById("quickResultsContent");
-      
-      const { closestLarger, closestSmaller } = findClosestBoxes(targetVolume);
-      
-      let html = `<p><strong>目标体积:</strong> ${targetVolume.toFixed(6)} m³</p>`;
-      
-      if (closestLarger) {
-        html += `<p><strong>推荐 (较大):</strong><br>`;
-        html += `${closestLarger.size}cm<br>`;
-        html += `体积: ${closestLarger.volume.toFixed(6)}m³</p>`;
-      }
-      
-      if (closestSmaller) {
-        html += `<p><strong>推荐 (较小):</strong><br>`;
-        html += `${closestSmaller.size}cm<br>`;
-        html += `体积: ${closestSmaller.volume.toFixed(6)}m³</p>`;
-      }
-      
-      if (!closestLarger && !closestSmaller) {
-        html += `<p style="color: #dc3545;">未找到合适的箱子</p>`;
-      }
-      
-      contentDiv.innerHTML = html;
-      resultsDiv.style.display = "block";
+
+      updateHistory();
     }
   </script>
 </body>
