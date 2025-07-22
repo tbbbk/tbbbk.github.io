@@ -1,6 +1,10 @@
 
 
+>Course Homepage: [15-462/662 Fall 2020](https://15462.courses.cs.cmu.edu/fall2020/home)
+>
 >For assignments implementations: [tbbbk/Scotty3D_Benky](https://github.com/tbbbk/Scotty3D_Benky)
+>
+>Author: Bingkui Tong
 
 [TOC]
 
@@ -222,6 +226,7 @@ $$
 
 ### 2.2.3 Shear
 
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722110856468.png" alt="image-20250722110856468" style="zoom:50%;" />
 $$
 f_{\mathbf{u},\mathbf{v}}=\mathbf{x}+\langle\mathbf{v},\mathbf{x}\rangle\mathbf{u}
 $$
@@ -292,7 +297,7 @@ If we apply a translation to a 2D point $\mathbf{p}$, all the homogeneous coordi
 
 <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250717211313093.png" alt="image-20250717211313093" style="zoom:50%;" />
 
-**But sheer is a linear transformation!**
+**But shear is a linear transformation!**
 
 Let a point $ \mathbf{p} = (p_1, p_2) $be translated by vector $\mathbf{u} = (u_1, u_2) $, resulting in:   $$ \mathbf{p}' = (p_1 + u_1, p_2 + u_2) $$      For homogeneous coordinates $\widehat{\mathbf{p}} = (c p_1, c p_2, c) $ ( $ c \neq 0 $ ), the translated coordinates become:   
 $$
@@ -1364,7 +1369,7 @@ $$
 \color{red}{\text{How can we possibly evaluate this integral?}}
 $$
 
-## 5.1 Numerical Integration
+## **5.1 Numerical Integration**
 
 <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720174218971.png" alt="image-20250720174218971" style="zoom:50%;" />
 
@@ -1461,3 +1466,383 @@ We must know integral of $p(x)$ (to get $P(x)$), and also the inverse function
 
 <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250720213143070.png" alt="image-20250720213143070" style="zoom:67%;" />
 
+## **5.2 Monte Carlo Rendering**
+
+### 5.2.1 Expected Value and Variance
+
+Expected value:
+$$
+\underbrace{E(Y)}_{\text{expected value of random variable } Y} 
+:= \sum_{\substack{i=1 \\ \text{\small probability of } i\text{th outcome}}}^{k} 
+\underbrace{p_i}_{\text{\small probability of } i\text{th outcome}} 
+\underbrace{y_i}_{\text{\small value of } i\text{th outcome}}
+$$
+
+$$
+\begin{split}
+E\left[ \sum_{i} Y_i \right] &= \sum_{i} E[Y_i] \\
+E[aY] &= aE[Y]
+\end{split}
+$$
+
+Variance:
+$$
+V[Y] = E[Y^2] - E[Y]^2\\
+V\left[ \sum_{i=1}^{N} Y_i \right] = \sum_{i=1}^{N} V[Y_i]\\
+V[aY] = a^2 V[Y]
+$$
+
+### 5.2.2 Law of Large Number
+
+For any random variable, the average value of  $N$ trials approaches the expected value as we increase $N$.
+$$
+V\left[ \frac{1}{N} \sum_{i=1}^{N} Y_i \right] = \frac{1}{N^2} \sum_{i=1}^{N} V[Y_i] = \frac{1}{N^2} N \, V[Y] = \frac{1}{N} V[Y]
+$$
+The variance is always linear in $N$.
+
+### 5.2.3 Biasing
+
+$$
+\int_{\Omega} f(x) \, dx \approx \frac{1}{N} \sum_{i=1}^{N} \frac{f(X_i)}{p(X_i)}
+$$
+
+To get the accurate integration, we should divide the $p$ to fix the biasing caused by the weighted sampling (like importance sampling)
+
+### 5.2.4 Importance Sampling
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721184636477.png" alt="image-20250721184636477" style="zoom:50%;" />
+
+Sample the important area more. Remember divide the probability.
+
+### 5.2.5 Monte Carlo Integration
+
+According to law of large number, we know no matter how hard the integral is, we can always get the right image by taking more samples. 
+
+Keep in mind three key ideas:
+
+- Expected Value: what value do we get on average?
+- Variance:  what’s the expected deviation from the average?
+- Importance Sampling: how do we (correctly) take more samples  in more important regions?
+
+The essence of integration is "function's accumulation on area", Monte Carlo Integration convert it into "average value of random sampling $\times$ area size"
+$$
+\int_{\Omega} f(x) \, dx = \lim_{N \to \infty} \frac{|\Omega|}{N} \sum_{i=1}^{N} f(X_i)
+$$
+The $\Omega$ is the area size (volume for 3D, …)
+
+**The standard error is independent of dimensionality and only depends on the random samples used: $O(n^{-\frac{1}{2}})$**.
+
+### 5.2.6 Russian Roulette
+
+Randomly terminate the recursive integral of rendering equation.
+
+## **5.3 Variance Reduction**
+
+Keep in mind: **You can’t reduce variance of the integrand!  Can only reduce variance of an estimator.**
+
+### 5.3.1 Estimator
+
+ An “estimator” is a formula used to approximate an  integral, like the Monte Carlo estimator.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721193810096.png" alt="image-20250721193810096" style="zoom:67%;" />
+
+### 5.3.2 Bias & Consistency
+
+Two important things to ask about an estimator
+
+- it consistent?
+- Is it biased?
+
+Consistency: “converges to the correct answer”:
+$$
+\lim_{n \to \infty} P\left( |I - \hat{I}_n| > 0 \right) = 0
+$$
+
+
+Unbiased: “estimate is correct on average”:
+$$
+E\left[ I - \hat{I}_n \right] = 0
+$$
+Example (Consistent but biased):
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721194826431.png" alt="image-20250721194826431" style="zoom:50%;" />
+
+Example (Inconsistent but unbiased):
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721194813650.png" alt="image-20250721194813650" style="zoom:50%;" />
+
+> Rasterization and Path Tracing are neither consistent and unbiased.
+>
+> <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721194922785.png" alt="image-20250721194922785" style="zoom:50%;" />
+
+> Light has a very “spiky” distribution, how can we sample the lights more?
+>
+> <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721195228213.png" alt="image-20250721195228213" style="zoom:50%;" />
+
+### 5.3.3 Bidirectional Path Tracing
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721195508299.png" alt="image-20250721195508299" style="zoom:67%;" />
+
+Idea: connect paths from light, eye (“bidirectional”)
+
+Example (path length is 2):
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721195537999.png" alt="image-20250721195537999" style="zoom:50%;" />
+
+### 5.3.4 Metropolis-Hastings Algorithm (MH)
+
+> Good path can be hard to find!
+>
+> <img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721195644594.png" alt="image-20250721195644594" style="zoom:50%;" />
+
+Basic idea: prefer to take steps that increase sample value
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721195832196.png" alt="image-20250721195832196" style="zoom:50%;" />
+
+### 5.3.5 Multiple Importance Sampling
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721200413400.png" alt="image-20250721200413400" style="zoom:70%;" />
+$$
+\frac{1}{N} \sum_{i=1}^{n} \sum_{j=1}^{n_i} \frac{f(x_{ij})}{\sum_{k} c_k p_k(x_{ij})}
+$$
+
+### 5.3.6 Sampling Patterns & Variance Reduction
+
+How do we sample our function in the first place?
+
+**Stratified Sampling**
+
+Split into n bins, pick uniformly in each bin
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721200612402.png" alt="image-20250721200612402" style="zoom:67%;" />
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721200622279.png" alt="image-20250721200622279" style="zoom:67%;" />
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721200653343.png" alt="image-20250721200653343" style="zoom:67%;" />
+
+**Low-Discrepancy Sampling**: Number of samples should be proportional to area
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721201115915.png" alt="image-20250721201115915" style="zoom:67%;" />
+
+*$A(S)$ here is the proportion of S to the whole area
+
+**Hammersley & Halton Points**: 
+
+First define radical inverse $\phi_{P_r}(i)$
+
+Halton points in k-dimensions: $x_i = \left( \phi_{P_1}(i), \phi_{P_2}(i), \ldots, \phi_{P_k}(i) \right)$.
+
+Hammersley sequence is $x_i = \left( i/n, \phi_{P_1}(i), \phi_{P_2}(i), \ldots, \phi_{P_{k-1}}(i) \right)$
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721201701474.png" alt="image-20250721201701474" style="zoom:67%;" />
+
+**Blue Noise**: Can observe that monkey retina exhibits blue noise pattern
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721201341483.png" alt="image-20250721201341483" style="zoom:67%;" />
+
+…
+
+# 6. Animation
+
+## **6.1 Keyframe**
+
+### 6.1.1 Keyframing
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721202241470.png" alt="image-20250721202241470" style="zoom:50%;" />
+
+Specify important events only and computer fills in the rest via interpolation/approximation.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721202334372.png" alt="image-20250721202334372" style="zoom:67%;" />
+
+### 6.1.2 Spline Interpolation
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721202438178.png" alt="image-20250721202438178" style="zoom:50%;" />
+
+**Runge Phenomenon**: Tempting to use higher-degree polynomials, in order to get  higher-order continuity, but can lead to oscillation, ultimately worse approximation.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721202546955.png" alt="image-20250721202546955" style="zoom:50%;" />
+
+### 6.1.3 Natural Splines
+
+For each interval, want polynomial “piece” pi to interpolate  data (e.g., keyframes) at both endpoints:
+$$
+p_i(t_i) = f_i, \; p_i(t_{i+1}) = f_{i+1}, \; i = 0, \ldots, n-1
+$$
+Want tangents to agree at endpoints (“C1 continuity”):
+$$
+p_i'(t_{i+1}) = p_{i+1}'(t_{i+1}), \; i = 0, \ldots, n-2
+$$
+Also want curvature to agree at endpoints (“C2 continuity”): 
+$$
+p_i''(t_{i+1}) = p_{i+1}''(t_{i+1}), \; i = 0, \ldots, n-2
+$$
+Degree of freedom:
+$$
+\boldsymbol{2n + (n-1) + (n-1) = 4n - 2}
+$$
+
+### 6.1.4 Hermite/Bézier Spline
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721204200812.png" alt="image-20250721204200812" style="zoom:67%;" />
+
+### 6.1.5 Catmull-Rom Spline
+
+Use the difference of neighbors to define tangent.
+$$
+u_i := \frac{f_{i+1} - f_{i-1}}{t_{i+1} - t_{i-1}}
+$$
+
+> Details: [Scotty3D_Benky/assignments/A4/T1-splines.md at main · tbbbk/Scotty3D_Benky](https://github.com/tbbbk/Scotty3D_Benky/blob/main/assignments/A4/T1-splines.md)
+
+### 6.1.6 Evaluation of Spline
+
+- INTERPOLATION: spline passes exactly through data points 
+- CONTINUITY: at least twice differentiable everywhere
+- LOCALITY: moving one control point doesn’t affect whole curve
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250721204851472.png" alt="image-20250721204851472" style="zoom:67%;" />
+
+## **6.2 Dynamics**
+
+### 6.2.1 Inverse Kinematics
+
+Set a goal and use algorithm (like grad descent) to come up with a plausible motion.
+
+*Detail: [Scotty3D_Benky/assignments/A4/T2-skeleton.md at main · tbbbk/Scotty3D_Benky](https://github.com/tbbbk/Scotty3D_Benky/blob/main/assignments/A4/T2-skeleton.md)
+
+### 6.2.2 Animation EquationF
+
+$$
+\mathbf{F}=m\mathbf{a}
+$$
+
+### 6.2.3 Generalized Config
+
+Collect all points all into a single vector of generalized coordinates:  
+$$
+q=(x_0, x_1,...,x_n)
+$$
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722101843585.png" alt="image-20250722101843585" style="zoom:50%;" />
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722101855201.png" alt="image-20250722101855201" style="zoom:75%;" />
+$$
+\dot{q}=(\dot{x_0},\dot{x_1},...,\dot{x_n})
+$$
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722101942700.png" alt="image-20250722101942700" style="zoom:50%;" />
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722101951737.png" alt="image-20250722101951737" style="zoom:50%;" />
+
+
+
+### 6.2.3 Ordinary Differential Equation (ODE)
+
+Many dynamical systems can be described via an ordinary  differential equation (ODE) in generalized coordinates: 
+$$
+\frac{d}{dt} q = f(q, \dot{q}, t)\\
+\ddot{q}=\mathbf{F}/m
+$$
+Example:
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722102514896.png" alt="image-20250722102514896" style="zoom:67%;" />
+
+### 6.2.4 Lagrangian Mechanics<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722102609815.png" alt="image-20250722102609815" style="zoom:33%;" />
+
+1. Write down kinetic energy $K$
+
+2. Write down potential energy $U$
+
+3. Write down *Lagrangian* $\mathcal{L} := K - U$
+
+4. Dynamics then given by *Euler-Lagrange equation*:
+   $$
+   \frac{d}{dt} \frac{\partial \mathcal{L}}{\partial \dot{q}} = \frac{\partial \mathcal{L}}{\partial q}
+   $$
+
+### 6.2.5 Particle Systems
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722103450981.png" alt="image-20250722103450981" style="zoom:50%;" />
+
+We model phenomenon as large collection of particles
+
+> How can we solve all these things numerically?
+
+### 6.2.6 Forward/Backward Euler
+
+We can use the difference to replace derivatives.
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722103746311.png" alt="image-20250722103746311" style="zoom:67%;" />
+
+**Forward Euler**
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722103847607.png" alt="image-20250722103847607" style="zoom:67%;" />
+
+But this is very unstable!
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722104157368.png" alt="image-20250722104157368" style="zoom:50%;" />
+
+**Backward Euler**
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722104219777.png" alt="image-20250722104219777" style="zoom:67%;" />
+
+But it is unconditionally stable!
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722104314219.png" alt="image-20250722104314219" style="zoom:50%;" />
+
+### 6.2.7 Symplectic Euler
+
+Backward Euler was stable, but we also saw (empirically) that it  exibits numerical damping (damping not found in original eqn.). Nice alternative is symplectic Euler:
+
+- update velocity using current configuration
+- update configuration using new velocity
+
+### 6.2.8 Automatic Differentiation
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722104834574.png" alt="image-20250722104834574" style="zoom:50%;" />
+
+### 6.2.9 Symbolic Differentiation
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722104853490.png" alt="image-20250722104853490" style="zoom:50%;" />
+
+### 6.2.10 Geometric Differentiation
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722104933384.png" alt="image-20250722104933384" style="zoom:60%;" />
+
+## **6.3 Partial Differential Equation (PDE)**
+
+ODE: Implicitly describe function in terms of its time derivatives
+
+PDE: Also include spatial derivatives in implicit description
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722105601210.png" alt="image-20250722105601210" style="zoom:50%;" />
+
+Solving a PDE looks like “take weighted combination of  neighbors to get velocity (...and add a little velocity each time)”
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722105740737.png" alt="image-20250722105740737" style="zoom:50%;" />
+
+### 6.3.1 Definition of a PDE
+
+Want to solve for a function of time and space
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722105847196.png" alt="image-20250722105847196" style="zoom:67%;" />
+
+Example: nonlinear / higher order ⇒ HARDER TO SOLVE!
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722105952976.png" alt="image-20250722105952976" style="zoom:67%;" />
+
+### 6.3.2 Lagrangian vs. Eulerian
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722110151612.png" alt="image-20250722110151612" style="zoom:67%;" />
+
+Trade-Offs:
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722110228714.png" alt="image-20250722110228714" style="zoom:67%;" />
+
+Of course, no reason you have to choose just one! You can mix them!
+
+### 6.3.3 The Laplace Operator
+
+<img src="D:\BingkuiTongPersonalWebsite\tbbbk.github.io\blogs\cg\images\image-20250722110456273.png" alt="image-20250722110456273" style="zoom:67%;" />
+
+> …
+>
+> I sincerely do not understand the PDE well, orz.
