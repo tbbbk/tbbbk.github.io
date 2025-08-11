@@ -6,8 +6,8 @@ body {
     display: flex; 
     flex-direction: column;
     justify-content: center; 
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 10%; /* 调整宽度 */
+    margin-right: 10%; /* 调整宽度 */
     margin-top: 50px;
 }
 
@@ -104,4 +104,25 @@ iframe {
     bottom: 10px;
     right: 10px;
     z-index: 1000; 
+}
+
+/* 添加响应式设计 */
+@media (max-width: 768px) {
+    #page {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    #profile {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image {
+        width: 50%;
+    }
+
+    #introduction p, #miscellaneous li, #news li {
+        font-size: 20px;
+    }
 }
