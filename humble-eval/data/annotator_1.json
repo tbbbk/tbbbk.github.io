@@ -1,0 +1,1306 @@
+{
+  "annotator": 1,
+  "n_items": 100,
+  "items": [
+    {
+      "index": 1,
+      "uid": "h004",
+      "image": "images/h004.jpg",
+      "question": "Is there a fireplace in the room?",
+      "options": {
+        "A": "Yes",
+        "B": "In the bedroom",
+        "C": "Outside the room",
+        "D": "In the kitchen",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 2,
+      "uid": "h202",
+      "image": "images/h202.jpg",
+      "question": "What design is on the blanket in the room?",
+      "options": {
+        "A": "Stripes",
+        "B": "Polka dots",
+        "C": "Cartoon characters",
+        "D": "Plain color",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 3,
+      "uid": "h221",
+      "image": "images/h221.jpg",
+      "question": "What is the predominant style of the image?",
+      "options": {
+        "A": "Colorful",
+        "B": "Oil painting",
+        "C": "Watercolor",
+        "D": "Animated",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 4,
+      "uid": "h037",
+      "image": "images/h037.jpg",
+      "question": "Which item sits on top of the dresser in the room?",
+      "options": {
+        "A": "A clock",
+        "B": "A lamp",
+        "C": "A picture of a skull",
+        "D": "A cell phone",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 5,
+      "uid": "h041",
+      "image": "images/h041.jpg",
+      "question": "How many lamps are hanging from the ceiling in the room?",
+      "options": {
+        "A": "1",
+        "B": "5",
+        "C": "4",
+        "D": "6",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 6,
+      "uid": "h279",
+      "image": "images/h279.jpg",
+      "question": "What are some of the people doing in the ocean?",
+      "options": {
+        "A": "Riding bicycles",
+        "B": "Jogging",
+        "C": "Sunbathing",
+        "D": "Surfing",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 7,
+      "uid": "h120",
+      "image": "images/h120.jpg",
+      "question": "What is the texture of the area where the animals are sitting?",
+      "options": {
+        "A": "Grassy",
+        "B": "Watery",
+        "C": "Dirty",
+        "D": "Rocky",
+        "E": "None of above"
+      }
+    },
+    {
+      "index": 8,
+      "uid": "h052",
+      "image": "images/h052.jpg",
+      "question": "Where is the handbag in relation to the table?",
+      "options": {
+        "A": "On the table",
+        "B": "Under the table",
+        "C": "Behind the table",
+        "D": "Next to the table",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 9,
+      "uid": "h240",
+      "image": "images/h240.jpg",
+      "question": "What is the color of the soccer ball that the young boy is holding?",
+      "options": {
+        "A": "Red and black",
+        "B": "Yellow and green",
+        "C": "Purple and orange",
+        "D": "Pink and blue",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 10,
+      "uid": "h277",
+      "image": "images/h277.jpg",
+      "question": "What is the predominant color of the carrots on the plates?",
+      "options": {
+        "A": "Orange",
+        "B": "Green",
+        "C": "Red",
+        "D": "Purple",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 11,
+      "uid": "h291",
+      "image": "images/h291.jpg",
+      "question": "Are there any chairs beside the dining table?",
+      "options": {
+        "A": "Only in the bathroom",
+        "B": "No",
+        "C": "Uncertain",
+        "D": "Not mentioned",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 12,
+      "uid": "h134",
+      "image": "images/h134.jpg",
+      "question": "How many bowls are there in the image?",
+      "options": {
+        "A": "One",
+        "B": "Five",
+        "C": "Three",
+        "D": "Four",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 13,
+      "uid": "h030",
+      "image": "images/h030.jpg",
+      "question": "What color is the couch in the living room?",
+      "options": {
+        "A": "Red",
+        "B": "Blue",
+        "C": "Black",
+        "D": "Grey",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 14,
+      "uid": "h011",
+      "image": "images/h011.jpg",
+      "question": "What is the color of the grass mentioned in the scene?",
+      "options": {
+        "A": "Purple",
+        "B": "Red",
+        "C": "Blue",
+        "D": "Yellow",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 15,
+      "uid": "h270",
+      "image": "images/h270.jpg",
+      "question": "How many rivers can be seen?",
+      "options": {
+        "A": "One",
+        "B": "Two",
+        "C": "Three",
+        "D": "No rivers, only a lake",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 16,
+      "uid": "h071",
+      "image": "images/h071.jpg",
+      "question": "Does the man have any clothing related to a specific holiday?",
+      "options": {
+        "A": "Yes, an Easter bonnet",
+        "B": "Yes, a Thanksgiving apron",
+        "C": "Yes, a Halloween costume",
+        "D": "Yes, a Fourth of July shirt",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 17,
+      "uid": "h044",
+      "image": "images/h044.jpg",
+      "question": "What is it directly above the train?",
+      "options": {
+        "A": "Trees",
+        "B": "Platform",
+        "C": "Building",
+        "D": "A bridge",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 18,
+      "uid": "h200",
+      "image": "images/h200.jpg",
+      "question": "How many benches are lined up in the church?",
+      "options": {
+        "A": "Four benches",
+        "B": "Two benches",
+        "C": "Five benches",
+        "D": "One bench",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 19,
+      "uid": "h077",
+      "image": "images/h077.jpg",
+      "question": "What is the woman wearing a santa hat doing?",
+      "options": {
+        "A": "Cooking",
+        "B": "Playing a video game",
+        "C": "Dancing",
+        "D": "Reading a book",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 20,
+      "uid": "h142",
+      "image": "images/h142.jpg",
+      "question": "What object is on the floor beside a chair?",
+      "options": {
+        "A": "A bottle",
+        "B": "A microwave",
+        "C": "A plate",
+        "D": "A book",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 21,
+      "uid": "h102",
+      "image": "images/h102.jpg",
+      "question": "What object is associated with a soccer ball in its description?",
+      "options": {
+        "A": "A truck",
+        "B": "A traffic light",
+        "C": "A sports sign",
+        "D": "A house",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 22,
+      "uid": "h188",
+      "image": "images/h188.jpg",
+      "question": "What is a distinctive feature of the street described in the image?",
+      "options": {
+        "A": "It's covered in snow",
+        "B": "It is a dirt road",
+        "C": "It's filled with potholes",
+        "D": "It is closed to all vehicles",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 23,
+      "uid": "h045",
+      "image": "images/h045.jpg",
+      "question": "What is the relationship between the skateboard and the fence?",
+      "options": {
+        "A": "The skateboard is under the fence",
+        "B": "The skateboard is far from the fence",
+        "C": "The fence is on the skateboard",
+        "D": "The skateboard is beside the fence",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 24,
+      "uid": "h201",
+      "image": "images/h201.jpg",
+      "question": "Where are the buses parked?",
+      "options": {
+        "A": "On the river",
+        "B": "On the road",
+        "C": "On the sidewalk",
+        "D": "In the air",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 25,
+      "uid": "h287",
+      "image": "images/h287.jpg",
+      "question": "What is the woman doing in relation to the chair on the beach?",
+      "options": {
+        "A": "Standing next to",
+        "B": "Lying under",
+        "C": "Sitting on",
+        "D": "Leaping over",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 26,
+      "uid": "h213",
+      "image": "images/h213.jpg",
+      "question": "What are the majority of people in the image doing?",
+      "options": {
+        "A": "Sitting",
+        "B": "Walking",
+        "C": "Swimming",
+        "D": "Dancing",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 27,
+      "uid": "h290",
+      "image": "images/h290.jpg",
+      "question": "What is beside the suitcase with yellow tags?",
+      "options": {
+        "A": "A tree",
+        "B": "A door",
+        "C": "A wall",
+        "D": "A window",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 28,
+      "uid": "h194",
+      "image": "images/h194.jpg",
+      "question": "Where is the bridge located in relation to the sea?",
+      "options": {
+        "A": "Under",
+        "B": "Around",
+        "C": "Inside",
+        "D": "Across",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 29,
+      "uid": "h094",
+      "image": "images/h094.jpg",
+      "question": "What is the action of the person carrying the handbag?",
+      "options": {
+        "A": "Jogging",
+        "B": "Sitting",
+        "C": "Walking",
+        "D": "Dancing",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 30,
+      "uid": "h062",
+      "image": "images/h062.jpg",
+      "question": "What separates the boats from the shore?",
+      "options": {
+        "A": "building",
+        "B": "wall",
+        "C": "trees",
+        "D": "fence",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 31,
+      "uid": "h046",
+      "image": "images/h046.jpg",
+      "question": "What is the relationship between the bottle and the light?",
+      "options": {
+        "A": "The bottle is inside the light",
+        "B": "The bottle is behind the light",
+        "C": "The bottle is beside the light",
+        "D": "The bottle is on top of the light",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 32,
+      "uid": "h275",
+      "image": "images/h275.jpg",
+      "question": "Where are the people in relation to the airplane?",
+      "options": {
+        "A": "Under the airplane",
+        "B": "Above the airplane",
+        "C": "Inside the airplane",
+        "D": "On the airplane",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 33,
+      "uid": "h081",
+      "image": "images/h081.jpg",
+      "question": "How many types of signs are mentioned to be on the side of the road?",
+      "options": {
+        "A": "one",
+        "B": "two",
+        "C": "three",
+        "D": "four",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 34,
+      "uid": "h250",
+      "image": "images/h250.jpg",
+      "question": "What is the player doing who is running to first base?",
+      "options": {
+        "A": "Holding a bat",
+        "B": "Wearing a glove",
+        "C": "Sitting in a wheelchair",
+        "D": "Wearing a helmet",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 35,
+      "uid": "h057",
+      "image": "images/h057.jpg",
+      "question": "Where is the kite in relation to the sky?",
+      "options": {
+        "A": "The kite is in the water",
+        "B": "The kite is underground",
+        "C": "The kite is in sky",
+        "D": "The kite is on the grass",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 36,
+      "uid": "h017",
+      "image": "images/h017.jpg",
+      "question": "How many bicycles are mentioned being next to a horse or donkey?",
+      "options": {
+        "A": "5",
+        "B": "2",
+        "C": "3",
+        "D": "4",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 37,
+      "uid": "h070",
+      "image": "images/h070.jpg",
+      "question": "Where are the children in relation to the school bus?",
+      "options": {
+        "A": "Inside",
+        "B": "On top of",
+        "C": "Under",
+        "D": "Far away from",
+        "E": "None of above"
+      }
+    },
+    {
+      "index": 38,
+      "uid": "h178",
+      "image": "images/h178.jpg",
+      "question": "What is above the group of people?",
+      "options": {
+        "A": "A ceiling fan",
+        "B": "A chandelier",
+        "C": "Balloons",
+        "D": "Umbrellas",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 39,
+      "uid": "h170",
+      "image": "images/h170.jpg",
+      "question": "What items are in a white cup?",
+      "options": {
+        "A": "Knives",
+        "B": "Scissors",
+        "C": "Pencils",
+        "D": "Fruits",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 40,
+      "uid": "h146",
+      "image": "images/h146.jpg",
+      "question": "Where are the people who are flying kites?",
+      "options": {
+        "A": "On the road",
+        "B": "In front of a fountain",
+        "C": "On the pavement",
+        "D": "In a park",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 41,
+      "uid": "h088",
+      "image": "images/h088.jpg",
+      "question": "What activity is occurring in the grassy area?",
+      "options": {
+        "A": "Soccer",
+        "B": "Frisbee",
+        "C": "A picnic",
+        "D": "A concert",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 42,
+      "uid": "h165",
+      "image": "images/h165.jpg",
+      "question": "What feature of the weather is visible above the boats?",
+      "options": {
+        "A": "Sun",
+        "B": "Lightning",
+        "C": "Stormy clouds",
+        "D": "Snow",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 43,
+      "uid": "h231",
+      "image": "images/h231.jpg",
+      "question": "How many laptops are situated on the dining table?",
+      "options": {
+        "A": "One",
+        "B": "Two",
+        "C": "Three",
+        "D": "Four",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 44,
+      "uid": "h205",
+      "image": "images/h205.jpg",
+      "question": "Which piece of furniture has people gathered around it?",
+      "options": {
+        "A": "Cabinet",
+        "B": "Armchair",
+        "C": "Couch",
+        "D": "Bed",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 45,
+      "uid": "h244",
+      "image": "images/h244.jpg",
+      "question": "Who is running on the playing field?",
+      "options": {
+        "A": "Horses",
+        "B": "Dogs",
+        "C": "The soccer players",
+        "D": "The referees",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 46,
+      "uid": "h054",
+      "image": "images/h054.jpg",
+      "question": "What is the weather like in the scene?",
+      "options": {
+        "A": "Cloudy",
+        "B": "Sunny",
+        "C": "Rainy",
+        "D": "Foggy",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 47,
+      "uid": "h235",
+      "image": "images/h235.jpg",
+      "question": "Are there trucks parked beside the airplanes?",
+      "options": {
+        "A": "Yes, more than two",
+        "B": "No, there are no trucks",
+        "C": "Yes, just one",
+        "D": "Yes, exactly two",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 48,
+      "uid": "h237",
+      "image": "images/h237.jpg",
+      "question": "What item is found with flowers in it?",
+      "options": {
+        "A": "Basket",
+        "B": "Hat",
+        "C": "Box",
+        "D": "Bag",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 49,
+      "uid": "h013",
+      "image": "images/h013.jpg",
+      "question": "What furniture is the TV placed on?",
+      "options": {
+        "A": "A stand",
+        "B": "A shelf",
+        "C": "A desk",
+        "D": "A dresser",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 50,
+      "uid": "h226",
+      "image": "images/h226.jpg",
+      "question": "What color is the van parked in front of the house?",
+      "options": {
+        "A": "White",
+        "B": "Yellow",
+        "C": "Red",
+        "D": "Black",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 51,
+      "uid": "h245",
+      "image": "images/h245.jpg",
+      "question": "Where is the woman in relation to the couch?",
+      "options": {
+        "A": "Sitting on it",
+        "B": "Standing behind it",
+        "C": "Lying under it",
+        "D": "Leaning next to it",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 52,
+      "uid": "h225",
+      "image": "images/h225.jpg",
+      "question": "What color is the banner with the horse on it?",
+      "options": {
+        "A": "Red",
+        "B": "Green",
+        "C": "Purple",
+        "D": "Yellow",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 53,
+      "uid": "h069",
+      "image": "images/h069.jpg",
+      "question": "How many types of fruit are visible on the plate?",
+      "options": {
+        "A": "Two",
+        "B": "Three",
+        "C": "One",
+        "D": "Five",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 54,
+      "uid": "h176",
+      "image": "images/h176.jpg",
+      "question": "What are the majority of people inside the train doing?",
+      "options": {
+        "A": "Dancing",
+        "B": "Sitting",
+        "C": "Sleeping",
+        "D": "Eating",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 55,
+      "uid": "h006",
+      "image": "images/h006.jpg",
+      "question": "How many women are present in the image?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 56,
+      "uid": "h219",
+      "image": "images/h219.jpg",
+      "question": "How many baseball players are mentioned as wearing a baseball glove?",
+      "options": {
+        "A": "One",
+        "B": "Two",
+        "C": "Five",
+        "D": "Four",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 57,
+      "uid": "h093",
+      "image": "images/h093.jpg",
+      "question": "What is the color of the cups of coffee?",
+      "options": {
+        "A": "Green",
+        "B": "Black",
+        "C": "Red",
+        "D": "Blue",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 58,
+      "uid": "h068",
+      "image": "images/h068.jpg",
+      "question": "Are there any tennis balls with 'any' written on them in the image?",
+      "options": {
+        "A": "Yes, there is one",
+        "B": "Yes, there are two",
+        "C": "No, there are none",
+        "D": "Yes, but it is unclear how many",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 59,
+      "uid": "h137",
+      "image": "images/h137.jpg",
+      "question": "Are the men standing or walking?",
+      "options": {
+        "A": "Standing",
+        "B": "Walking",
+        "C": "Running",
+        "D": "Jumping",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 60,
+      "uid": "h171",
+      "image": "images/h171.jpg",
+      "question": "What is the person standing in front of the group of people wearing?",
+      "options": {
+        "A": "A green shirt",
+        "B": "A blue jacket",
+        "C": "A black coat",
+        "D": "A red hat",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 61,
+      "uid": "h026",
+      "image": "images/h026.jpg",
+      "question": "What is placed on the pavement?",
+      "options": {
+        "A": "A bicycle",
+        "B": "A truck",
+        "C": "A car",
+        "D": "A backpack",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 62,
+      "uid": "h232",
+      "image": "images/h232.jpg",
+      "question": "Where is the bottle located?",
+      "options": {
+        "A": "On the floor.",
+        "B": "Under the table.",
+        "C": "Inside the refrigerator.",
+        "D": "Next to the bowl.",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 63,
+      "uid": "h293",
+      "image": "images/h293.jpg",
+      "question": "Where is the group of people in relation to the man in a suit cutting the cake?",
+      "options": {
+        "A": "Above him",
+        "B": "In front of him",
+        "C": "To his left",
+        "D": "To his right",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 64,
+      "uid": "h223",
+      "image": "images/h223.jpg",
+      "question": "Which piece of equipment is worn by the baseball catcher?",
+      "options": {
+        "A": "Ski goggles",
+        "B": "Sunglasses",
+        "C": "Basketball shoes",
+        "D": "Baseball glove",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 65,
+      "uid": "h230",
+      "image": "images/h230.jpg",
+      "question": "Where is the square cake with white frosting located?",
+      "options": {
+        "A": "On a chair",
+        "B": "On the floor",
+        "C": "In someone's hand",
+        "D": "On a windowsill",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 66,
+      "uid": "h263",
+      "image": "images/h263.jpg",
+      "question": "What color is the awning in front of the restaurant?",
+      "options": {
+        "A": "Red",
+        "B": "Green",
+        "C": "Yellow",
+        "D": "Purple",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 67,
+      "uid": "h106",
+      "image": "images/h106.jpg",
+      "question": "What is the relationship between the bus and the street?",
+      "options": {
+        "A": "The bus is flying over the street",
+        "B": "The bus is driving down the street",
+        "C": "The bus is parked next to the street",
+        "D": "The bus is under the street",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 68,
+      "uid": "h089",
+      "image": "images/h089.jpg",
+      "question": "What is the primary mode of transport mentioned in the captions?",
+      "options": {
+        "A": "Airplanes",
+        "B": "Cars",
+        "C": "Scooters",
+        "D": "Motorcycles",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 69,
+      "uid": "h034",
+      "image": "images/h034.jpg",
+      "question": "What is the truck parked next to?",
+      "options": {
+        "A": "A car",
+        "B": "A motorcycle",
+        "C": "A person",
+        "D": "A bench",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 70,
+      "uid": "h021",
+      "image": "images/h021.jpg",
+      "question": "Who is sitting on the chair?",
+      "options": {
+        "A": "A child",
+        "B": "A woman",
+        "C": "A cat",
+        "D": "A crowd of people",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 71,
+      "uid": "h036",
+      "image": "images/h036.jpg",
+      "question": "How many bottles of beer are on the table?",
+      "options": {
+        "A": "One",
+        "B": "Two",
+        "C": "Three",
+        "D": "Four",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 72,
+      "uid": "h040",
+      "image": "images/h040.jpg",
+      "question": "What is the relation between the man and the bench?",
+      "options": {
+        "A": "The man is fixing the bench",
+        "B": "The man is sitting on the bench",
+        "C": "The man is standing next to the bench",
+        "D": "The man is skateboarding behind the bench",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 73,
+      "uid": "h099",
+      "image": "images/h099.jpg",
+      "question": "What is the color of the handbag carried by a woman on her shoulder?",
+      "options": {
+        "A": "Red",
+        "B": "Blue",
+        "C": "Green",
+        "D": "Black",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 74,
+      "uid": "h272",
+      "image": "images/h272.jpg",
+      "question": "What is located on the bathroom floor?",
+      "options": {
+        "A": "The toilet",
+        "B": "A trash bin",
+        "C": "A shower curtain",
+        "D": "A bath mat",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 75,
+      "uid": "h294",
+      "image": "images/h294.jpg",
+      "question": "What is the relationship between the man and the laptop?",
+      "options": {
+        "A": "The laptop is on top of the man",
+        "B": "The man is in front of the laptop",
+        "C": "The laptop is beside the man",
+        "D": "The laptop is underneath the man",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 76,
+      "uid": "h063",
+      "image": "images/h063.jpg",
+      "question": "What are the giraffes standing on?",
+      "options": {
+        "A": "Grass",
+        "B": "Wood",
+        "C": "Concrete",
+        "D": "Carpet",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 77,
+      "uid": "h268",
+      "image": "images/h268.jpg",
+      "question": "What is the position of the traffic light that is red in relation to the grassy area?",
+      "options": {
+        "A": "On the grassy area",
+        "B": "Beside the grassy area",
+        "C": "Under the grassy area",
+        "D": "Floating above the grassy area",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 78,
+      "uid": "h236",
+      "image": "images/h236.jpg",
+      "question": "Where are the cars parked according to the image?",
+      "options": {
+        "A": "In a garage",
+        "B": "On the street",
+        "C": "On a rooftop",
+        "D": "In a parking lot",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 79,
+      "uid": "h177",
+      "image": "images/h177.jpg",
+      "question": "How many airplanes can be seen in the sky?",
+      "options": {
+        "A": "Five",
+        "B": "Two",
+        "C": "Three",
+        "D": "Four",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 80,
+      "uid": "h278",
+      "image": "images/h278.jpg",
+      "question": "What is the woman doing in the scene?",
+      "options": {
+        "A": "Running",
+        "B": "Sitting",
+        "C": "Swimming",
+        "D": "Dancing",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 81,
+      "uid": "h095",
+      "image": "images/h095.jpg",
+      "question": "Who is watching the tennis player that is about to hit the ball?",
+      "options": {
+        "A": "A woman sitting on a chair",
+        "B": "A chef cooking in a kitchen",
+        "C": "A man standing with a racket",
+        "D": "A child playing on the field",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 82,
+      "uid": "h209",
+      "image": "images/h209.jpg",
+      "question": "What is the weather like where the people are skiing?",
+      "options": {
+        "A": "Cloudy",
+        "B": "Overcast",
+        "C": "Snowing",
+        "D": "Rainy",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 83,
+      "uid": "h228",
+      "image": "images/h228.jpg",
+      "question": "How many people are shown actively pitching a ball in the image?",
+      "options": {
+        "A": "Five",
+        "B": "Two",
+        "C": "Three",
+        "D": "One",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 84,
+      "uid": "h002",
+      "image": "images/h002.jpg",
+      "question": "How many people are riding snowboards?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "20",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 85,
+      "uid": "h180",
+      "image": "images/h180.jpg",
+      "question": "What is the bag on the back of a walking person?",
+      "options": {
+        "A": "A suitcase",
+        "B": "A grocery bag",
+        "C": "A laptop bag",
+        "D": "A purse",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 86,
+      "uid": "h156",
+      "image": "images/h156.jpg",
+      "question": "What is surrounding the soccer field?",
+      "options": {
+        "A": "A river",
+        "B": "A road",
+        "C": "A fence",
+        "D": "Trees",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 87,
+      "uid": "h059",
+      "image": "images/h059.jpg",
+      "question": "What is beside the motorcycle?",
+      "options": {
+        "A": "A train",
+        "B": "A horse",
+        "C": "A river",
+        "D": "A bicycle",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 88,
+      "uid": "h060",
+      "image": "images/h060.jpg",
+      "question": "Which of the following is not present on the grill?",
+      "options": {
+        "A": "Bacon",
+        "B": "Pork belly",
+        "C": "Hot dogs",
+        "D": "Sausages",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 89,
+      "uid": "h242",
+      "image": "images/h242.jpg",
+      "question": "What is the number of airplanes with the color 'nok' mentioned in the whole image captions?",
+      "options": {
+        "A": "One",
+        "B": "Two",
+        "C": "Five",
+        "D": "Four",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 90,
+      "uid": "h286",
+      "image": "images/h286.jpg",
+      "question": "What sport are the individuals preparing to engage in?",
+      "options": {
+        "A": "Snowboarding",
+        "B": "Ice skating",
+        "C": "Skiing",
+        "D": "Hiking",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 91,
+      "uid": "h132",
+      "image": "images/h132.jpg",
+      "question": "What facial expression does the man have?",
+      "options": {
+        "A": "He is frowning",
+        "B": "He is crying",
+        "C": "He is winking",
+        "D": "He is yawning",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 92,
+      "uid": "h107",
+      "image": "images/h107.jpg",
+      "question": "How many traffic lights are on the road?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 93,
+      "uid": "h162",
+      "image": "images/h162.jpg",
+      "question": "What items are placed on top of the motorcycle?",
+      "options": {
+        "A": "A handbag",
+        "B": "A helmet",
+        "C": "Wire to hang clothes",
+        "D": "Racing stickers",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 94,
+      "uid": "h114",
+      "image": "images/h114.jpg",
+      "question": "What motion is the trolley car making?",
+      "options": {
+        "A": "Flying",
+        "B": "Halting",
+        "C": "Swimming",
+        "D": "Sinking",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 95,
+      "uid": "h087",
+      "image": "images/h087.jpg",
+      "question": "What is the light fixture hanging from?",
+      "options": {
+        "A": "The wall",
+        "B": "The ceiling",
+        "C": "A lamp post",
+        "D": "The door",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 96,
+      "uid": "h284",
+      "image": "images/h284.jpg",
+      "question": "What is over the trolley?",
+      "options": {
+        "A": "Pavement",
+        "B": "Roof",
+        "C": "Tree",
+        "D": "Sky",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 97,
+      "uid": "h014",
+      "image": "images/h014.jpg",
+      "question": "Where is the laptop positioned in relation to the cat?",
+      "options": {
+        "A": "Behind",
+        "B": "In front of",
+        "C": "Next to",
+        "D": "Over",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 98,
+      "uid": "h251",
+      "image": "images/h251.jpg",
+      "question": "How many chairs are in the living room?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 99,
+      "uid": "h072",
+      "image": "images/h072.jpg",
+      "question": "How many cars are stopped at the traffic light?",
+      "options": {
+        "A": "one",
+        "B": "two",
+        "C": "three",
+        "D": "ten",
+        "E": "None of the above"
+      }
+    },
+    {
+      "index": 100,
+      "uid": "h131",
+      "image": "images/h131.jpg",
+      "question": "How many bottles are present?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4",
+        "E": "None of the above"
+      }
+    }
+  ]
+}
